@@ -168,7 +168,7 @@ function initializeDateInfo() {
     }
 }
 
-// Course filtering initialization - FIXED
+// Course filtering initialization
 function initializeCourseFiltering() {
     if (!filterButtons || filterButtons.length === 0) {
         return;
@@ -190,7 +190,7 @@ function initializeCourseFiltering() {
     }
 }
 
-// Course rendering with FIXED layout to prevent overlapping
+// Course rendering
 function renderCourses() {
     if (!coursesGrid) {
         return;
@@ -217,7 +217,7 @@ function createCourseCard(course) {
     const statusClass = course.completed ? 'status--success' : 'status--error';
     const statusText = course.completed ? 'Completed' : 'In Progress';
 
-    // FIXED layout structure - using CSS Grid to prevent overlapping
+    // Layout structure using CSS Grid
     card.innerHTML = `
     <div class="course-card__header">
       <h3 class="course-card__code">${course.subject} ${course.number}</h3>
@@ -236,7 +236,7 @@ function createCourseCard(course) {
     return card;
 }
 
-// Filter functionality - FIXED
+// Filter functionality
 function setActiveFilter(activeButton) {
     if (!filterButtons || filterButtons.length === 0) return;
 
@@ -252,7 +252,7 @@ function setActiveFilter(activeButton) {
 function filterCourses(filter) {
     currentFilter = filter;
 
-    // Filter courses based on the selected filter - FIXED
+    // Filter courses based on the selected filter
     if (filter === 'all') {
         filteredCourses = [...courses];
     } else {
@@ -268,7 +268,7 @@ function filterCourses(filter) {
     announceFilterChange();
 }
 
-// Credit calculation using reduce function - FIXED
+// Credit calculation using reduce function
 function calculateTotalCredits() {
     const totalCredits = filteredCourses.reduce((total, course) => {
         return total + course.credits;
@@ -350,7 +350,7 @@ function debounce(func, wait) {
     };
 }
 
-// Error handling for course rendering
+// Error handling for course rendering - production ready (no console output)
 function handleRenderError(error) {
     if (coursesGrid) {
         coursesGrid.innerHTML = `
@@ -370,7 +370,7 @@ function safeRenderCourses() {
     }
 }
 
-// Enhanced DOMContentLoaded event - FIXED
+// Initialize application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     initializeApplication();
 });
