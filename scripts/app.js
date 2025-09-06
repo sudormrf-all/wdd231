@@ -171,7 +171,6 @@ function initializeDateInfo() {
 // Course filtering initialization - FIXED
 function initializeCourseFiltering() {
     if (!filterButtons || filterButtons.length === 0) {
-        console.error('Filter buttons not found');
         return;
     }
 
@@ -179,7 +178,6 @@ function initializeCourseFiltering() {
         button.addEventListener('click', (event) => {
             event.preventDefault();
             const filter = button.dataset.filter;
-            console.log('Filter button clicked:', filter); // Debug log
             setActiveFilter(button);
             filterCourses(filter);
         });
@@ -195,11 +193,8 @@ function initializeCourseFiltering() {
 // Course rendering with FIXED layout to prevent overlapping
 function renderCourses() {
     if (!coursesGrid) {
-        console.error('Courses grid not found');
         return;
     }
-
-    console.log('Rendering courses:', filteredCourses); // Debug log
 
     // Clear existing courses
     coursesGrid.innerHTML = '';
@@ -257,8 +252,6 @@ function setActiveFilter(activeButton) {
 function filterCourses(filter) {
     currentFilter = filter;
 
-    console.log('Filtering courses by:', filter); // Debug log
-
     // Filter courses based on the selected filter - FIXED
     if (filter === 'all') {
         filteredCourses = [...courses];
@@ -266,8 +259,6 @@ function filterCourses(filter) {
         // Filter courses by subject
         filteredCourses = courses.filter(course => course.subject === filter);
     }
-
-    console.log('Filtered courses:', filteredCourses); // Debug log
 
     // Re-render courses and update credits
     renderCourses();
@@ -282,8 +273,6 @@ function calculateTotalCredits() {
     const totalCredits = filteredCourses.reduce((total, course) => {
         return total + course.credits;
     }, 0);
-
-    console.log('Calculated total credits:', totalCredits); // Debug log
 
     if (totalCreditsSpan) {
         totalCreditsSpan.textContent = totalCredits;
@@ -363,7 +352,6 @@ function debounce(func, wait) {
 
 // Error handling for course rendering
 function handleRenderError(error) {
-    console.error('Error rendering courses:', error);
     if (coursesGrid) {
         coursesGrid.innerHTML = `
       <div class="error-message" style="text-align: center; padding: 2rem; color: var(--color-error);">
@@ -384,7 +372,6 @@ function safeRenderCourses() {
 
 // Enhanced DOMContentLoaded event - FIXED
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM Content Loaded - Initializing application'); // Debug log
     initializeApplication();
 });
 
@@ -392,6 +379,5 @@ document.addEventListener('DOMContentLoaded', () => {
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeApplication);
 } else {
-    console.log('DOM already loaded - Initializing application immediately'); // Debug log
     initializeApplication();
 }
