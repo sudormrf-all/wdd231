@@ -1,4 +1,4 @@
-// Course data
+// Course data from provided JSON
 const courses = [
     {
         subject: 'CSE',
@@ -38,7 +38,7 @@ const courses = [
         certificate: 'Web and Computer Programming',
         description: 'This course will introduce the notion of classes and objects. It will present encapsulation at a conceptual level. It will also work with inheritance and polymorphism.',
         technology: ['C#'],
-        completed: false
+        completed: true
     },
     {
         subject: 'WDD',
@@ -62,52 +62,60 @@ const courses = [
     }
 ];
 
-// DOM elements
-const navToggle = document.querySelector('.nav-toggle');
-const navigation = document.querySelector('.nav');
-const coursesGrid = document.getElementById('coursesGrid');
-const filterButtons = document.querySelectorAll('.filter-btn');
-const totalCreditsSpan = document.getElementById('totalCredits');
-const currentYearSpan = document.getElementById('currentYear');
-const lastModifiedSpan = document.getElementById('lastModified');
+// DOM elements - Initialize after DOM is loaded
+let navToggle, navigation, coursesGrid, filterButtons, totalCreditsSpan, currentYearSpan, lastModifiedSpan;
 
 // State
 let currentFilter = 'all';
 let filteredCourses = [...courses];
 
 // Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
+function initializeApplication() {
+    // Get DOM elements
+    navToggle = document.querySelector('.nav-toggle');
+    navigation = document.querySelector('.nav');
+    coursesGrid = document.getElementById('coursesGrid');
+    filterButtons = document.querySelectorAll('.filter-btn');
+    totalCreditsSpan = document.getElementById('totalCredits');
+    currentYearSpan = document.getElementById('currentYear');
+    lastModifiedSpan = document.getElementById('lastModified');
+
+    // Initialize all functionality
     initializeNavigation();
     initializeDateInfo();
     initializeCourseFiltering();
     renderCourses();
     calculateTotalCredits();
-});
+}
 
 // Navigation functionality
 function initializeNavigation() {
-    navToggle.addEventListener('click', toggleNavigation);
+    if (navToggle && navigation) {
+        navToggle.addEventListener('click', toggleNavigation);
+
+        // Handle keyboard navigation
+        navToggle.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleNavigation();
+            }
+        });
+    }
 
     // Close navigation when clicking outside
     document.addEventListener('click', (event) => {
-        if (!navigation.contains(event.target) && !navToggle.contains(event.target)) {
+        if (navigation && navToggle &&
+            !navigation.contains(event.target) &&
+            !navToggle.contains(event.target)) {
             closeNavigation();
-        }
-    });
-
-    // Handle keyboard navigation
-    navToggle.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            toggleNavigation();
         }
     });
 
     // Close navigation on escape key
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && navigation.classList.contains('active')) {
+        if (event.key === 'Escape' && navigation && navigation.classList.contains('active')) {
             closeNavigation();
-            navToggle.focus();
+            if (navToggle) navToggle.focus();
         }
     });
 }
@@ -123,15 +131,19 @@ function toggleNavigation() {
 }
 
 function openNavigation() {
-    navigation.classList.add('active');
-    navToggle.classList.add('active');
-    navToggle.setAttribute('aria-expanded', 'true');
+    if (navigation && navToggle) {
+        navigation.classList.add('active');
+        navToggle.classList.add('active');
+        navToggle.setAttribute('aria-expanded', 'true');
+    }
 }
 
 function closeNavigation() {
-    navigation.classList.remove('active');
-    navToggle.classList.remove('active');
-    navToggle.setAttribute('aria-expanded', 'false');
+    if (navigation && navToggle) {
+        navigation.classList.remove('active');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+    }
 }
 
 // Date initialization
@@ -156,24 +168,43 @@ function initializeDateInfo() {
     }
 }
 
-// Course filtering initialization
+// Course filtering initialization - FIXED
 function initializeCourseFiltering() {
+    if (!filterButtons || filterButtons.length === 0) {
+        console.error('Filter buttons not found');
+        return;
+    }
+
     filterButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             event.preventDefault();
             const filter = button.dataset.filter;
+            console.log('Filter button clicked:', filter); // Debug log
             setActiveFilter(button);
             filterCourses(filter);
         });
     });
+
+    // Set initial state
+    const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+    if (allButton) {
+        setActiveFilter(allButton);
+    }
 }
 
-// Course rendering
+// Course rendering with FIXED layout to prevent overlapping
 function renderCourses() {
-    if (!coursesGrid) return;
+    if (!coursesGrid) {
+        console.error('Courses grid not found');
+        return;
+    }
 
+    console.log('Rendering courses:', filteredCourses); // Debug log
+
+    // Clear existing courses
     coursesGrid.innerHTML = '';
 
+    // Render filtered courses only
     filteredCourses.forEach(course => {
         const courseCard = createCourseCard(course);
         coursesGrid.appendChild(courseCard);
@@ -191,44 +222,52 @@ function createCourseCard(course) {
     const statusClass = course.completed ? 'status--success' : 'status--error';
     const statusText = course.completed ? 'Completed' : 'In Progress';
 
+    // FIXED layout structure - using CSS Grid to prevent overlapping
     card.innerHTML = `
     <div class="course-card__header">
-      <div class="course-card__code">${course.subject} ${course.number}</div>
-      <div class="course-card__credits">${course.credits} Credits</div>
+      <h3 class="course-card__code">${course.subject} ${course.number}</h3>
+      <h4 class="course-card__title">${course.title}</h4>
     </div>
-    <h3 class="course-card__title">${course.title}</h3>
-    <p class="course-card__description">${course.description}</p>
     <div class="course-card__tech">${techTags}</div>
-    <div class="course-card__status">
-      <span class="status ${statusClass}">${statusText}</span>
+    <p class="course-card__description">${course.description}</p>
+    <div class="course-card__footer">
+      <div class="course-card__status">
+        <span class="status ${statusClass}">${statusText}</span>
+      </div>
+      <div class="course-card__credits">${course.credits} Credits</div>
     </div>
   `;
 
     return card;
 }
 
-// Filter functionality
+// Filter functionality - FIXED
 function setActiveFilter(activeButton) {
+    if (!filterButtons || filterButtons.length === 0) return;
+
     filterButtons.forEach(button => {
-        button.classList.remove('active');
-        button.classList.remove('btn--primary');
+        button.classList.remove('active', 'btn--primary');
         button.classList.add('btn--secondary');
     });
 
-    activeButton.classList.add('active');
+    activeButton.classList.add('active', 'btn--primary');
     activeButton.classList.remove('btn--secondary');
-    activeButton.classList.add('btn--primary');
 }
 
 function filterCourses(filter) {
     currentFilter = filter;
 
-    // Filter courses based on the selected filter
+    console.log('Filtering courses by:', filter); // Debug log
+
+    // Filter courses based on the selected filter - FIXED
     if (filter === 'all') {
         filteredCourses = [...courses];
     } else {
+        // Filter courses by subject
         filteredCourses = courses.filter(course => course.subject === filter);
     }
+
+    console.log('Filtered courses:', filteredCourses); // Debug log
 
     // Re-render courses and update credits
     renderCourses();
@@ -238,11 +277,13 @@ function filterCourses(filter) {
     announceFilterChange();
 }
 
-// Credit calculation using reduce function
+// Credit calculation using reduce function - FIXED
 function calculateTotalCredits() {
     const totalCredits = filteredCourses.reduce((total, course) => {
         return total + course.credits;
     }, 0);
+
+    console.log('Calculated total credits:', totalCredits); // Debug log
 
     if (totalCreditsSpan) {
         totalCreditsSpan.textContent = totalCredits;
@@ -341,25 +382,16 @@ function safeRenderCourses() {
     }
 }
 
-// Initialize with error handling
-function initializeApplication() {
-    try {
-        initializeNavigation();
-        initializeDateInfo();
-        initializeCourseFiltering();
-        renderCourses();
-        calculateTotalCredits();
-    } catch (error) {
-        console.error('Error initializing application:', error);
-    }
-}
-
-// Enhanced DOMContentLoaded event
-document.addEventListener('DOMContentLoaded', initializeApplication);
+// Enhanced DOMContentLoaded event - FIXED
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded - Initializing application'); // Debug log
+    initializeApplication();
+});
 
 // Fallback initialization if DOMContentLoaded has already fired
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeApplication);
 } else {
+    console.log('DOM already loaded - Initializing application immediately'); // Debug log
     initializeApplication();
 }
