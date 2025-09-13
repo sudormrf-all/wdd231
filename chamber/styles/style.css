@@ -21,10 +21,11 @@ body {
 body {
     background: var(--bg);
     color: var(--ink);
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    line-height: 1.55
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height: 1.55;
 }
 
+/* Header / Nav */
 .site-header,
 .site-footer {
     background: var(--surface);
@@ -38,18 +39,16 @@ body {
     gap: .75rem
 }
 
-.brand h1 {
-    margin: 0;
-    font-size: 1.25rem
+.brand-name {
+    font-weight: 600
 }
 
-.menu-btn {
-    margin-top: .5rem;
+.btn {
     background: var(--card);
     color: var(--ink);
     border: 1px solid var(--border);
     padding: .5rem .75rem;
-    border-radius: .4rem
+    border-radius: .35rem;
 }
 
 .nav {
@@ -70,14 +69,14 @@ body {
     background: #1a2e4c
 }
 
-@media (min-width: 760px) {
+@media (min-width:760px) {
     .site-header {
         display: grid;
         grid-template-columns: 1fr auto;
         align-items: center
     }
 
-    .menu-btn {
+    #menu-toggle {
         display: none
     }
 
@@ -92,15 +91,16 @@ body {
     }
 }
 
+/* Main */
 .directory {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem
 }
 
-.directory h2 {
-    margin: 0 0 .5rem 0;
-    font-size: 1.4rem
+.directory h1 {
+    margin: 0 0 .5rem;
+    font-size: 1.5rem
 }
 
 .controls {
@@ -110,14 +110,7 @@ body {
     margin: .5rem 0 1rem
 }
 
-.view-btn {
-    background: var(--card);
-    color: var(--ink);
-    border: 1px solid var(--border);
-    padding: .5rem .75rem;
-    border-radius: .35rem
-}
-
+/* Directory grid/list */
 #members.cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -162,6 +155,7 @@ body {
     word-break: break-all
 }
 
+/* Minimal change for list view only */
 #members.list .member-card {
     border-radius: 0;
     border-left: none;
@@ -169,6 +163,7 @@ body {
     grid-template-columns: 48px 1fr;
 }
 
+/* Footer */
 .site-footer address {
     font-style: normal;
     color: var(--muted)

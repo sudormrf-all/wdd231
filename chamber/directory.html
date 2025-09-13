@@ -4,24 +4,32 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Porto Valley Chamber | Directory</title>
     <meta name="description"
         content="Official directory of Porto Valley Chamber members with contact info, websites, and membership levels.">
-    <meta name="author" content="Full Name">
+    <meta name="author" content="André Pina">
 
-    <!-- Favicon -->
+    <!-- Favicon / Touch Icon -->
     <link rel="icon" href="./images/favicon.ico">
-    <link rel="apple-touch-icon" href="./images/icon-180.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/icon-180.png">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Porto Valley Chamber | Directory">
     <meta property="og:description" content="Browse and connect with businesses in the Porto Valley Chamber directory.">
-    <meta property="og:image" content="https://your-github-username.github.io/wdd231/chamber/images/og-directory.jpg">
-    <meta property="og:url" content="https://your-github-username.github.io/wdd231/chamber/directory.html">
+    <meta property="og:image" content="https://sudormrf-all.github.io/wdd231/chamber/images/og-directory.jpg">
+    <meta property="og:url" content="https://sudormrf-all.github.io/wdd231/chamber/directory.html">
     <meta property="og:type" content="website">
 
-    <!-- CSS: normalize first, then site styles -->
+    <!-- Normalize first -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+
+    <!-- Google Fonts: single request + preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Site styles -->
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
@@ -29,10 +37,10 @@
     <header class="site-header">
         <div class="brand">
             <img src="./images/logo.svg" alt="Porto Valley Chamber logo" width="48" height="48">
-            <h1>Porto Valley Chamber</h1>
+            <span class="brand-name">Porto Valley Chamber</span>
         </div>
 
-        <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" class="menu-btn">Menu</button>
+        <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" class="btn">Menu</button>
 
         <nav id="site-nav" class="nav" hidden>
             <a href="./index.html">Home</a>
@@ -44,11 +52,11 @@
     </header>
 
     <main class="directory">
-        <h2>Member Directory</h2>
+        <h1>Porto Valley Chamber Directory</h1>
 
         <section class="controls" aria-label="Directory view selection">
-            <button id="gridBtn" class="view-btn" aria-pressed="true">Grid</button>
-            <button id="listBtn" class="view-btn" aria-pressed="false">List</button>
+            <button id="gridBtn" class="btn" aria-pressed="true">Grid</button>
+            <button id="listBtn" class="btn" aria-pressed="false">List</button>
         </section>
 
         <section id="members" class="cards" aria-live="polite"></section>
