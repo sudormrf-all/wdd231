@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Lusitano Tech",
+        "address": "Av. Infante 120, Porto",
+        "phone": "+351 22 000 1000",
+        "website": "https://lusitanotech.example.com",
+        "image": "lusitano-tech.png",
+        "level": 3,
+        "category": "Technology"
+    },
+    {
+        "name": "Ribeira Cafe",
+        "address": "Rua da Ribeira 8, Porto",
+        "phone": "+351 22 000 2000",
+        "website": "https://ribeiracafe.example.com",
+        "image": "ribeira-cafe.jpg",
+        "level": 1,
+        "category": "Food & Drink"
+    },
+    {
+        "name": "Douro Logistics",
+        "address": "Rua do Comércio 44, Vila Nova de Gaia",
+        "phone": "+351 22 000 3000",
+        "website": "https://douro-logistics.example.com",
+        "image": "douro-logistics.png",
+        "level": 2,
+        "category": "Logistics"
+    },
+    {
+        "name": "Atlântico Finance",
+        "address": "Praça da Liberdade 5, Porto",
+        "phone": "+351 22 000 4000",
+        "website": "https://atlantico-finance.example.com",
+        "image": "atlantico-finance.png",
+        "level": 3,
+        "category": "Finance"
+    },
+    {
+        "name": "Gaia Fitness",
+        "address": "Av. República 200, Vila Nova de Gaia",
+        "phone": "+351 22 000 5000",
+        "website": "https://gaiafitness.example.com",
+        "image": "gaia-fitness.jpg",
+        "level": 1,
+        "category": "Health"
+    },
+    {
+        "name": "Porto Print House",
+        "address": "Rua das Flores 70, Porto",
+        "phone": "+351 22 000 6000",
+        "website": "https://portoprint.example.com",
+        "image": "porto-print-house.png",
+        "level": 2,
+        "category": "Printing"
+    },
+    {
+        "name": "Matador Media",
+        "address": "Rua de Santa Catarina 222, Porto",
+        "phone": "+351 22 000 7000",
+        "website": "https://matadormedia.example.com",
+        "image": "matador-media.png",
+        "level": 1,
+        "category": "Marketing"
+    }
+]
