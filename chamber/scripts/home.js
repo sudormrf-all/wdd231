@@ -4,7 +4,6 @@
 // ----- Weather -----
 const LAT = 41.1496;      // Porto
 const LON = -8.6109;      // Porto
-const OWM_KEY = 'c34649f8dbe4f28aa24125e8c55a0ac6';        // keep this in a separate config in production
 const OWM_BASE = 'https://api.openweathermap.org/data/2.5/onecall?lat=41.149&lon=-8.6109&exclude=hourly,daily&appid={c34649f8dbe4f28aa24125e8c55a0ac6}'; // e.g., .../data/2.5
 
 async function getJSON(url) {
@@ -73,7 +72,7 @@ async function initWeather() {
     }
 }
 // ----- Spotlights -----
-const MEMBERS_JSON = './data/members.json'; // same JSON you use in directory.js
+const MEMBERS_JSON = './data/members.json'; // same JSON i use in directory.js
 
 function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
