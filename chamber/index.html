@@ -23,6 +23,7 @@
 
     <!-- Site styles -->
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/weather.css">
 </head>
 
 <body>
@@ -69,15 +70,26 @@
         </section>
 
         <!-- Weather -->
-        <section class="weather" aria-label="Local weather">
-            <h2>Weather</h2>
-            <div class="current">
-                <p><span id="temp">--</span>°C • <span id="desc">Loading...</span></p>
-            </div>
-            <div class="forecast">
-                <h3>3-Day Forecast</h3>
-                <ul id="forecast-list" class="forecast-list" aria-live="polite"></ul>
-            </div>
+        <section class="weather" aria-label="Current weather in Porto" aria-live="polite" aria-atomic="true">
+            <h2 class="weather-title">Current Weather</h2>
+        
+            <article class="weather-card">
+                <div class="weather-grid">
+                    <div class="weather-meta">
+                        <p class="weather-temp">
+                            <span id="current-temp">—</span>
+                        </p>
+                        <p class="weather-desc">
+                            <span id="current-desc">Loading…</span>
+                        </p>
+                    </div>
+        
+                    <figure class="weather-figure">
+                        <img id="weather-icon" src="" alt="" width="100" height="100">
+                        <figcaption id="weather-caption"></figcaption>
+                    </figure>
+                </div>
+            </article>
         </section>
 
         <!-- Spotlights -->

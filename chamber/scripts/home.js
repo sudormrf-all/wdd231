@@ -1,4 +1,4 @@
-// scripts/home.js
+/* // scripts/home.js
 // Weather + Spotlights for index.html
 
 // ----- Weather -----
@@ -138,3 +138,65 @@ document.addEventListener('DOMContentLoaded', () => {
     initWeather();
     initSpotlights();
 });
+ */
+
+// scripts/home.js
+
+(function () {
+  // Guard: only run on pages that have the weather section
+  const tempEl = document.querySelector('#current-temp');
+  const iconEl = document.querySelector('#weather-icon');
+  const captionEl = document.querySelector('#weather-caption');
+  const descMirror = document.querySelector('#current-desc');
+  if (!tempEl || !iconEl || !captionEl || !descMirror) return;
+
+  // Porto coordinates (rounded to 2 decimals)
+  const lat = 41.15;
+  const lon = -8.61;
+
+  // choose units: 'metric' for °C, 'imperial' for °F
+  const units = 'metric';
+
+  // IMPORTANT: set a valid API key
+    const apiKey = '2d593f141e8c2984f1badf3947478857';
+
+  // Current Weather API endpoint (by coordinates)
+  // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units={units}&appid={API key}
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
+
+  async function apiFetch() {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw Error(await response.text());
+
+      const data = await response.json();
+      displayResults(data);
+    } catch (err) {
+      console.error('Weather fetch error:', err);
+      descMirror.textContent = 'Unavailable';
+      captionEl.textContent = 'Weather data unavailable';
+    }
+  }
+
+  function displayResults(data) {
+    // temperature
+    const temp = Math.round(data.main?.temp);
+    const unitLabel = units === 'imperial' ? 'F' : 'C';
+    tempEl.innerHTML = `${Number.isFinite(temp) ? temp : '—'}&deg;${unitLabel}`;
+
+    // icon + description
+    const iconCode = data.weather?.[0]?.icon || '01d';
+    const desc = data.weather?.[0]?.description || 'clear sky';
+
+    // official OWM icon CDN with @2x sizing
+    const iconSrc = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    iconEl.setAttribute('src', iconSrc);
+    iconEl.setAttribute('alt', desc);
+
+    // captions
+    captionEl.textContent = desc;
+    descMirror.textContent = desc;
+  }
+
+  apiFetch();
+})();

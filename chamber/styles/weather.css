@@ -1,0 +1,109 @@
+/* ----- Layout + container ----- */
+.weather {
+    margin: 1.5rem 1rem;
+    /* left within page gutters */
+    max-width: 72rem;
+}
+
+.weather-card {
+    width: 100%;
+    max-width: 384px;
+    /* compact widget width */
+    margin: 0;
+    /* keep left-aligned */
+    background: var(--weather-surface, #fff);
+    color: var(--weather-text, #1f2937);
+    border-radius: 10px;
+    border-left: 6px solid var(--weather-accent, #FFA500);
+    /* accent on left */
+    border-top: 0;
+    /* move accent to left edge */
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .14);
+    /* subtle shadow */
+    overflow: hidden;
+}
+
+/* Two-column: icon left, content right */
+.weather-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    /* icon column then content column */
+    gap: 0.75rem 0.9rem;
+    /* tidy rhythm */
+    align-items: center;
+    /* vertical alignment */
+    justify-items: start;
+    /* anchor to left */
+    padding: 0.75rem 1rem;
+}
+
+/* On small screens keep one column but stay left-aligned */
+@media (max-width: 42rem) {
+    .weather-grid {
+        grid-template-columns: 1fr;
+        justify-items: start;
+        /* left, not centered */
+        text-align: left;
+    }
+}
+
+/* ----- Icon column ----- */
+.weather-figure {
+    margin: 0;
+    text-align: left;
+}
+
+#weather-icon {
+    width: 64px;
+    /* tighter icon */
+    height: 64px;
+    display: block;
+    margin: 0;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .10));
+}
+
+#weather-caption {
+    display: none;
+    /* caption not needed if we reflect desc */
+}
+
+/* ----- Content column (temperature centered) ----- */
+.weather-meta {
+    display: flex;
+    flex-direction: column;
+    /* stack temp + desc */
+    align-items: center;
+    /* center this column’s content */
+    justify-content: center;
+    /* center along main axis if needed */
+    min-width: 0;
+    /* avoid overflow */
+}
+
+.weather-meta .weather-temp {
+    font-size: 2.25rem;
+    /* strong but not oversized */
+    line-height: 1.05;
+    margin: 0;
+    text-align: center;
+    /* center the number */
+}
+
+.weather-meta .weather-desc {
+    margin: .25rem 0 0 0;
+    color: var(--weather-muted, #6b7280);
+    text-transform: capitalize;
+    font-size: 0.95rem;
+    text-align: center;
+    /* align with temperature for balance */
+}
+
+/* ----- Title tweaks (optional) ----- */
+.weather-title {
+    font-size: 1.1rem;
+    margin: 0 0 .5rem 1rem;
+    /* align title with card left edge */
+    color: var(--weather-text, #ffffff);
+    text-shadow: none;
+    text-align: left;
+}
