@@ -100,7 +100,7 @@
 
 /* ----- Title tweaks (optional) ----- */
 .weather-title {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     margin: 0 0 .5rem 1rem;
     /* align title with card left edge */
     color: var(--weather-text, #ffffff);
