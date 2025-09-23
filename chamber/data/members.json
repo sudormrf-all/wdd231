@@ -4,7 +4,7 @@
         "address": "Av. Infante 120, Porto",
         "phone": "+351 22 000 1000",
         "website": "https://lusitanotech.example.com",
-        "image": "lusitano-tech.png",
+        "image": "lusitano-tech.jpg",
         "level": 3,
         "category": "Technology"
     },
@@ -13,7 +13,7 @@
         "address": "Rua da Ribeira 8, Porto",
         "phone": "+351 22 000 2000",
         "website": "https://ribeiracafe.example.com",
-        "image": "ribeira-cafe.png",
+        "image": "ribeira-cafe.jpg",
         "level": 1,
         "category": "Food & Drink"
     },
@@ -22,7 +22,7 @@
         "address": "Rua do Comércio 44, Vila Nova de Gaia",
         "phone": "+351 22 000 3000",
         "website": "https://douro-logistics.example.com",
-        "image": "douro-logistics.png",
+        "image": "douro-logistics.jpg",
         "level": 2,
         "category": "Logistics"
     },
@@ -31,7 +31,7 @@
         "address": "Praça da Liberdade 5, Porto",
         "phone": "+351 22 000 4000",
         "website": "https://atlantico-finance.example.com",
-        "image": "atlantico-finance.png",
+        "image": "atlantico-finance.jpg",
         "level": 3,
         "category": "Finance"
     },
@@ -49,7 +49,7 @@
         "address": "Rua das Flores 70, Porto",
         "phone": "+351 22 000 6000",
         "website": "https://portoprint.example.com",
-        "image": "porto-print-house.png",
+        "image": "porto-print-house.jpg",
         "level": 2,
         "category": "Printing"
     },
@@ -58,7 +58,7 @@
         "address": "Rua de Santa Catarina 222, Porto",
         "phone": "+351 22 000 7000",
         "website": "https://matadormedia.example.com",
-        "image": "matador-media.png",
+        "image": "matador-media.jpg",
         "level": 1,
         "category": "Marketing"
     }
