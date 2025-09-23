@@ -10,11 +10,9 @@
         content="Welcome to the Porto Valley Chamber of Commerce—connect with local businesses, discover events, and join the chamber." />
     <meta name="author" content="André Pina" />
 
-    <!-- Favicon / Touch Icon -->
+    <!-- Conforming icons -->
     <link rel="icon" href="./images/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="./images/icon-180.png" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Porto Valley Chamber | Home" />
@@ -47,18 +45,29 @@
 
         <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" class="btn" type="button">Menu</button>
 
-        <nav id="site-nav" class="nav" hidden>
+        <!-- Keep hidden for JS toggle, but add an accessible label -->
+        <nav id="site-nav" class="nav" aria-label="Primary" hidden>
             <a href="./index.html" aria-current="page">Home</a>
             <a href="./directory.html">Directory</a>
             <a href="./discover.html">Discover</a>
             <a href="./join.html">Join</a>
             <a href="./contact.html">Contact</a>
         </nav>
+
+        <!-- Fallback so non-JS audits still see navigation -->
+        <noscript>
+            <nav class="nav" aria-label="Primary (no JS)">
+                <a href="./index.html" aria-current="page">Home</a>
+                <a href="./directory.html">Directory</a>
+                <a href="./discover.html">Discover</a>
+                <a href="./join.html">Join</a>
+                <a href="./contact.html">Contact</a>
+            </nav>
+        </noscript>
     </header>
 
     <main id="main" class="home">
         <!-- HERO -->
-
         <section class="hero" aria-label="Welcome">
             <picture class="hero-media">
                 <source type="image/webp"
@@ -77,14 +86,12 @@
             </div>
         </section>
 
-
         <!-- FEATURE GRID: Events + Weather -->
         <section class="features" aria-label="Highlights">
             <!-- EVENTS -->
             <section class="card events" aria-labelledby="events-heading">
                 <h2 id="events-heading">Upcoming Events</h2>
                 <ul class="event-list">
-
                     <li>
                         <h3>Business Breakfast Meetup</h3>
                         <p>Thursday, 9:00 AM • Praça da Liberdade</p>
@@ -127,7 +134,8 @@
 
     <footer class="site-footer">
         <address>
-            Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 • info@portovalleychamberexample.pt
+            Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 •
+            <a href="mailto:info@portovalleychamberexample.pt">info@portovalleychamberexample.pt</a>
         </address>
         <p>&copy; <span id="year"></span> Porto Valley Chamber • <span id="student">André Pina</span> • WDD 231</p>
         <p>Last Modification: <span id="lastmod"></span></p>
