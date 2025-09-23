@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Porto Valley Chamber | Home</title>
@@ -44,7 +44,7 @@
 
         <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" class="btn" type="button">Menu</button>
 
-        <!-- Hidden attribute removed; visibility is controlled via CSS and data-open -->
+        <!-- Visibility via data-open; no hidden attribute -->
         <nav id="site-nav" class="nav" data-open="false">
             <a href="./index.html" aria-current="page">Home</a>
             <a href="./directory.html">Directory</a>
@@ -102,8 +102,9 @@
                 <div id="weather-current" class="weather-current">
                     <div class="temp"><span id="temp">—</span><span class="unit">°C</span></div>
                     <div class="desc">
-                        <!-- Decorative icon with valid placeholder src -->
-                        <img id="icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                        <!-- Decorative icon with lowercase SVG data URL placeholder -->
+                        <img id="icon"
+                            src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3e%3c/svg%3e"
                             alt="" aria-hidden="true" width="64" height="64" />
                         <span id="summary">Loading…</span>
                     </div>
@@ -125,8 +126,7 @@
     <footer class="site-footer">
         <address>
             Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 •
-            <a href="mailto:info@portovalleychamberexample.pt"
-                aria-label="Email info@portovalleychamberexample.pt">Email the Chamber</a>
+            <a href="./contact.html">Contact the Chamber</a>
         </address>
         <p>&copy; <span id="year"></span> Porto Valley Chamber • <span id="student">André Pina</span> • WDD 231</p>
         <p>Last Modification: <span id="lastmod"></span></p>
