@@ -1,27 +1,25 @@
-
+// Responsive nav
 const menuToggle = document.querySelector('#menu-toggle');
 const nav = document.querySelector('#site-nav');
 
-
-nav?.removeAttribute('hidden');
-
-
-function setNavOpen(open) {
-    if (!menuToggle || !nav) return;
-    nav.classList.toggle('is-open', open);
-    menuToggle.setAttribute('aria-expanded', String(open));
-}
-
 menuToggle?.addEventListener('click', () => {
-    const open = menuToggle.getAttribute('aria-expanded') === 'true';
-    setNavOpen(!open);
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+    if (expanded) nav.setAttribute('hidden', '');
+    else nav.removeAttribute('hidden');
 });
 
 
 const mq = window.matchMedia('(min-width:760px)');
-function syncNavToViewport() {
-    if (!nav || !menuToggle) return;
-    setNavOpen(mq.matches);
+function syncNavHidden() {
+    if (!nav) return;
+    if (mq.matches) nav.removeAttribute('hidden');
+    else nav.setAttribute('hidden', '');
 }
-syncNavToViewport();
-mq.addEventListener('change', syncNavToViewport);
+syncNavHidden();
+mq.addEventListener('change', syncNavHidden);
+
+
+
+document.querySelector('#year').textContent = new Date().getFullYear();
+document.querySelector('#lastmod').textContent = document.lastModified;
