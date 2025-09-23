@@ -1,0 +1,1 @@
+window.OWM_KEY = "2d593f141e8c2984f1badf3947478857";

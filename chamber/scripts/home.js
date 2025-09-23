@@ -1,202 +1,190 @@
-/* // scripts/home.js
-// Weather + Spotlights for index.html
+/*** WEATHER ***/
+// Porto, PT
+const LAT = 41.1496;
+const LON = -8.6109;
 
-// ----- Weather -----
-const LAT = 41.1496;      // Porto
-const LON = -8.6109;      // Porto
-const OWM_BASE = 'https://api.openweathermap.org/data/2.5/onecall?lat=41.149&lon=-8.6109&exclude=hourly,daily&appid={c34649f8dbe4f28aa24125e8c55a0ac6}'; // e.g., .../data/2.5
 
-async function getJSON(url) {
-    const resp = await fetch(url);
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    return resp.json();
+const OWM_KEY = (typeof window !== 'undefined' && window.OWM_KEY) ? window.OWM_KEY : '';
+
+const els = {
+    temp: document.querySelector('#temp'),
+    icon: document.querySelector('#icon'),
+    summary: document.querySelector('#summary'),
+    forecast: document.querySelector('#weather-forecast'),
+};
+
+function k(el, value) { if (el) el.textContent = value; }
+
+function iconUrl(code) {
+    // Small, cacheable icon from OWM CDN
+    return `https://openweathermap.org/img/wn/${code}@2x.png`;
 }
 
-function formatDay(ts, locale = 'en-GB') {
-    return new Date(ts).toLocaleDateString(locale, { weekday: 'short' });
+function fmtDayName(date) {
+    return date.toLocaleDateString(undefined, { weekday: 'short' }); // e.g., Mon
 }
 
-async function loadCurrentWeather() {
-    const url = `${OWM_BASE}/weather?lat=${LAT}&lon=${LON}&units=metric&lang=en&appid=${OWM_KEY}`;
-    const data = await getJSON(url);
-    const temp = Math.round(data.main.temp);
-    const desc = data.weather?.[0]?.description ?? '—';
-    document.querySelector('#temp').textContent = temp;
-    document.querySelector('#desc').textContent = desc;
-}
-
-async function loadForecast3Day() {
-    const url = `${OWM_BASE}/forecast?lat=${LAT}&lon=${LON}&units=metric&lang=en&appid=${OWM_KEY}`;
-    const data = await getJSON(url);
-
-    // Group by date (YYYY-MM-DD), pick around 12:00:00 when available
-    const byDate = new Map();
-    for (const entry of data.list) {
-        const [dateStr, timeStr] = entry.dt_txt.split(' ');
-        if (!byDate.has(dateStr)) byDate.set(dateStr, []);
-        byDate.get(dateStr).push(entry);
+async function loadWeather() {
+    if (!OWM_KEY || OWM_KEY === 'YOUR_OPENWEATHERMAP_API_KEY') {
+        k(els.summary, 'Add your OpenWeatherMap API key in scripts/config.js');
+        return;
     }
 
-    // Choose next 3 distinct future dates (skip today if mostly past)
-    const todayISO = new Date().toISOString().slice(0, 10);
-    const futureDates = [...byDate.keys()].filter(d => d >= todayISO).slice(0, 4); // gather a bit more, then trim
-    const picks = [];
-    for (const d of futureDates) {
-        const entries = byDate.get(d);
-        // Prefer 12:00:00, fallback to middle item
-        let pick = entries.find(e => e.dt_txt.endsWith('12:00:00')) ?? entries[Math.floor(entries.length / 2)];
-        picks.push(pick);
-    }
-    // Ensure exactly 3 days
-    const three = picks.slice(0, 3);
-
-    const ul = document.querySelector('#forecast-list');
-    ul.innerHTML = '';
-    for (const e of three) {
-        const li = document.createElement('li');
-        li.className = 'forecast-day';
-        const day = formatDay(e.dt * 1000);
-        const t = Math.round(e.main.temp);
-        const dsc = e.weather?.[0]?.description ?? '—';
-        li.textContent = `${day}: ${t}°C — ${dsc}`;
-        ul.appendChild(li);
-    }
-}
-
-async function initWeather() {
     try {
-        await loadCurrentWeather();
-        await loadForecast3Day();
+        // Current
+        const curUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&units=metric&appid=${OWM_KEY}`;
+        const curRes = await fetch(curUrl);
+        if (!curRes.ok) throw new Error(`Weather HTTP ${curRes.status}`);
+        const current = await curRes.json();
+
+        const tempC = Math.round(current.main.temp);
+        const desc = current.weather?.[0]?.description ?? '—';
+        const ico = current.weather?.[0]?.icon ?? '01d';
+
+        k(els.temp, tempC);
+        if (els.icon) {
+            els.icon.src = iconUrl(ico);
+            els.icon.alt = desc;
+        }
+        k(els.summary, desc.charAt(0).toUpperCase() + desc.slice(1));
+
+        // 5‑day / 3‑hour forecast → pick next 3 days (midday if available)
+        const fcUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${LAT}&lon=${LON}&units=metric&appid=${OWM_KEY}`;
+        const fcRes = await fetch(fcUrl);
+        if (!fcRes.ok) throw new Error(`Forecast HTTP ${fcRes.status}`);
+        const forecast = await fcRes.json();
+
+        const tz = forecast.city?.timezone ?? 0; // seconds
+        // Build a map: dayKey -> best entry around midday
+        const byDay = new Map();
+        const nowUtcMs = Date.now();
+
+        for (const item of forecast.list) {
+            const utcMs = item.dt * 1000;
+            if (utcMs < nowUtcMs) continue;
+            const local = new Date(utcMs + tz * 1000);
+            const dayKey = local.getUTCFullYear() + '-' + (local.getUTCMonth() + 1) + '-' + local.getUTCDate();
+            const hour = local.getUTCHours(); // "localized" hours after offset trick
+
+            // Prefer items near 12:00
+            const score = Math.abs(12 - hour);
+            const prev = byDay.get(dayKey);
+            if (!prev || score < prev.score) {
+                byDay.set(dayKey, { score, item, local });
+            }
+        }
+
+        // Exclude "today" and take the next 3 unique days
+        const todayKey = (() => {
+            const d = new Date(nowUtcMs + tz * 1000);
+            return d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate();
+        })();
+
+        const days = [...byDay.entries()]
+            .filter(([key]) => key !== todayKey)
+            .sort((a, b) => a[1].local - b[1].local)
+            .slice(0, 3);
+
+        // Render forecast
+        els.forecast.innerHTML = '';
+        for (const [, { item, local }] of days) {
+            const dname = fmtDayName(local);
+            const t = Math.round(item.main.temp);
+            const d = item.weather?.[0]?.description ?? '';
+            const ic = item.weather?.[0]?.icon ?? '01d';
+
+            const card = document.createElement('div');
+            card.className = 'forecast-day';
+            card.innerHTML = `
+        <div class="day" aria-label="${local.toLocaleDateString()}">${dname}</div>
+        <img src="${iconUrl(ic)}" alt="${d}" width="48" height="48" />
+        <div class="t">${t}°C</div>
+        <div class="d">${d}</div>
+      `;
+            els.forecast.appendChild(card);
+        }
+
+        if (!els.forecast.children.length) {
+            els.forecast.textContent = 'Forecast unavailable.';
+        }
     } catch (err) {
-        console.error('Weather error', err);
+        console.error(err);
+        k(els.summary, 'Weather unavailable.');
     }
 }
-// ----- Spotlights -----
-const MEMBERS_JSON = './data/members.json'; // same JSON i use in directory.js
 
-function shuffle(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
+/*** SPOTLIGHTS ***/
+const spotlightGrid = document.querySelector('#spotlight-grid');
+
+function levelName(level) {
+    return level === 3 ? 'Gold' : level === 2 ? 'Silver' : 'Member';
 }
 
-function createSpotlightCard(m) {
+function telHref(s) {
+    return `tel:${(s || '').replace(/[^\d+]/g, '')}`;
+}
+
+function createSpotlight(m) {
     const card = document.createElement('article');
     card.className = 'spotlight-card';
 
     const img = document.createElement('img');
-    img.src = m.logo; // ensure local path in your repo
+    img.src = `./images/${m.image}`;
     img.alt = `${m.name} logo`;
-    img.width = 180;
-    img.height = 180;
     img.loading = 'lazy';
+    img.width = 80; img.height = 80;
+    img.onerror = () => { img.src = './images/placeholder.png'; img.alt = `${m.name}`; };
 
     const h3 = document.createElement('h3');
     h3.textContent = m.name;
 
-    const pPhone = document.createElement('p');
-    pPhone.textContent = m.phone;
+    const meta = document.createElement('div');
+    meta.className = 'member-meta';
+    meta.innerHTML = `
+    <div>${m.address}</div>
+    <div><a href="${m.website}" rel="noopener noreferrer" target="_blank">${m.website}</a></div>
+    <div><a href="${telHref(m.phone)}">${m.phone}</a></div>
+    <div class="badge ${m.level === 3 ? 'gold' : 'silver'}">Level: ${levelName(m.level)}</div>
+  `;
 
-    const pAddr = document.createElement('p');
-    pAddr.textContent = m.address;
-
-    const a = document.createElement('a');
-    a.href = m.website;
-    a.textContent = 'Visit website';
-    a.rel = 'noopener';
-
-    const pLevel = document.createElement('p');
-    pLevel.className = 'level';
-    pLevel.textContent = `Membership: ${m.membership}`;
-
-    card.append(img, h3, pPhone, pAddr, a, pLevel);
+    card.append(img, h3, meta);
     return card;
 }
 
-async function initSpotlights() {
-    try {
-        const data = await (await fetch(MEMBERS_JSON)).json();
-        const goldSilver = data.members.filter(m =>
-            /^(gold|silver)$/i.test(m.membership)
-        );
-        shuffle(goldSilver);
-        const count = Math.random() < 0.5 ? 2 : 3;
-        const picks = goldSilver.slice(0, count);
+function sample(arr, count) {
+    // Fisher–Yates shuffle slice
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a.slice(0, count);
+}
 
-        const wrap = document.querySelector('#spotlights');
-        wrap.innerHTML = '';
-        picks.forEach(m => wrap.appendChild(createSpotlightCard(m)));
+async function loadSpotlights() {
+    try {
+        const res = await fetch('./data/members.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        // Gold (3) or Silver (2) only
+        const eligible = data.filter(m => m.level === 2 || m.level === 3);
+        if (eligible.length === 0) {
+            spotlightGrid.textContent = 'No spotlight members yet.';
+            return;
+        }
+
+        const count = Math.min(eligible.length, Math.random() < 0.5 ? 2 : 3);
+        const picks = sample(eligible, count);
+
+        spotlightGrid.innerHTML = '';
+        picks.forEach(m => spotlightGrid.appendChild(createSpotlight(m)));
     } catch (err) {
-        console.error('Spotlights error', err);
+        console.error(err);
+        spotlightGrid.textContent = 'Failed to load spotlights.';
     }
 }
 
-// ----- Init -----
-document.addEventListener('DOMContentLoaded', () => {
-    initWeather();
-    initSpotlights();
-});
- */
-
-// scripts/home.js
-
-(function () {
-  // Guard: only run on pages that have the weather section
-  const tempEl = document.querySelector('#current-temp');
-  const iconEl = document.querySelector('#weather-icon');
-  const captionEl = document.querySelector('#weather-caption');
-  const descMirror = document.querySelector('#current-desc');
-  if (!tempEl || !iconEl || !captionEl || !descMirror) return;
-
-  // Porto coordinates (rounded to 2 decimals)
-  const lat = 41.15;
-  const lon = -8.61;
-
-  // choose units: 'metric' for °C, 'imperial' for °F
-  const units = 'metric';
-
-  // IMPORTANT: set a valid API key
-    const apiKey = '2d593f141e8c2984f1badf3947478857';
-
-  // Current Weather API endpoint (by coordinates)
-  // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units={units}&appid={API key}
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
-
-  async function apiFetch() {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw Error(await response.text());
-
-      const data = await response.json();
-      displayResults(data);
-    } catch (err) {
-      console.error('Weather fetch error:', err);
-      descMirror.textContent = 'Unavailable';
-      captionEl.textContent = 'Weather data unavailable';
-    }
-  }
-
-  function displayResults(data) {
-    // temperature
-    const temp = Math.round(data.main?.temp);
-    const unitLabel = units === 'imperial' ? 'F' : 'C';
-    tempEl.innerHTML = `${Number.isFinite(temp) ? temp : '—'}&deg;${unitLabel}`;
-
-    // icon + description
-    const iconCode = data.weather?.[0]?.icon || '01d';
-    const desc = data.weather?.[0]?.description || 'clear sky';
-
-    // official OWM icon CDN with @2x sizing
-    const iconSrc = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-    iconEl.setAttribute('src', iconSrc);
-    iconEl.setAttribute('alt', desc);
-
-    // captions
-    captionEl.textContent = desc;
-    descMirror.textContent = desc;
-  }
-
-  apiFetch();
-})();
+/*** INIT ***/
+loadWeather();
+loadSpotlights();

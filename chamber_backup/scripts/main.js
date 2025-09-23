@@ -1,7 +1,6 @@
 // Responsive nav
 const menuToggle = document.querySelector('#menu-toggle');
 const nav = document.querySelector('#site-nav');
-
 menuToggle?.addEventListener('click', () => {
     const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
     menuToggle.setAttribute('aria-expanded', String(!expanded));
@@ -9,16 +8,6 @@ menuToggle?.addEventListener('click', () => {
     else nav.removeAttribute('hidden');
 });
 
-
-const mq = window.matchMedia('(min-width:760px)');
-function syncNavHidden() {
-    if (!nav) return;
-    if (mq.matches) nav.removeAttribute('hidden');
-    else nav.setAttribute('hidden', '');
-}
-syncNavHidden();
-mq.addEventListener('change', syncNavHidden);
-
-
+// Footer info
 document.querySelector('#year').textContent = new Date().getFullYear();
 document.querySelector('#lastmod').textContent = document.lastModified;
