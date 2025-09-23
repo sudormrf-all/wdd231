@@ -102,8 +102,9 @@
                 <div id="weather-current" class="weather-current">
                     <div class="temp"><span id="temp">—</span><span class="unit">°C</span></div>
                     <div class="desc">
-                        <!-- Decorative icon -->
-                        <img id="icon" alt="" aria-hidden="true" width="64" height="64" />
+                        <!-- Decorative icon with valid placeholder src -->
+                        <img id="icon" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                            alt="" aria-hidden="true" width="64" height="64" />
                         <span id="summary">Loading…</span>
                     </div>
                 </div>
@@ -124,7 +125,8 @@
     <footer class="site-footer">
         <address>
             Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 •
-            <a href="mailto:info@portovalleychamberexample.pt">info@portovalleychamberexample.pt</a>
+            <a href="mailto:info@portovalleychamberexample.pt"
+                aria-label="Email info@portovalleychamberexample.pt">Email the Chamber</a>
         </address>
         <p>&copy; <span id="year"></span> Porto Valley Chamber • <span id="student">André Pina</span> • WDD 231</p>
         <p>Last Modification: <span id="lastmod"></span></p>
