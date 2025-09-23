@@ -10,9 +10,11 @@
         content="Welcome to the Porto Valley Chamber of Commerce—connect with local businesses, discover events, and join the chamber." />
     <meta name="author" content="André Pina" />
 
-    <!-- Conforming icons -->
+    <!-- Favicon / Touch Icon -->
     <link rel="icon" href="./images/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="./images/icon-180.png" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Porto Valley Chamber | Home" />
@@ -32,11 +34,6 @@
 
     <!-- Site styles -->
     <link rel="stylesheet" href="./styles/style.css" />
-
-   
-    <script>
-        document.documentElement.classList.add('js');
-    </script>
 </head>
 
 <body>
@@ -50,8 +47,7 @@
 
         <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" class="btn" type="button">Menu</button>
 
-        
-        <nav id="site-nav" class="nav" aria-label="Primary">
+        <nav id="site-nav" class="nav" hidden>
             <a href="./index.html" aria-current="page">Home</a>
             <a href="./directory.html">Directory</a>
             <a href="./discover.html">Discover</a>
@@ -62,6 +58,7 @@
 
     <main id="main" class="home">
         <!-- HERO -->
+
         <section class="hero" aria-label="Welcome">
             <picture class="hero-media">
                 <source type="image/webp"
@@ -80,12 +77,14 @@
             </div>
         </section>
 
+
         <!-- FEATURE GRID: Events + Weather -->
         <section class="features" aria-label="Highlights">
             <!-- EVENTS -->
             <section class="card events" aria-labelledby="events-heading">
                 <h2 id="events-heading">Upcoming Events</h2>
                 <ul class="event-list">
+
                     <li>
                         <h3>Business Breakfast Meetup</h3>
                         <p>Thursday, 9:00 AM • Praça da Liberdade</p>
@@ -128,8 +127,7 @@
 
     <footer class="site-footer">
         <address>
-            Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 •
-            <a href="mailto:info@portovalleychamberexample.pt">info@portovalleychamberexample.pt</a>
+            Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 • info@portovalleychamberexample.pt
         </address>
         <p>&copy; <span id="year"></span> Porto Valley Chamber • <span id="student">André Pina</span> • WDD 231</p>
         <p>Last Modification: <span id="lastmod"></span></p>
