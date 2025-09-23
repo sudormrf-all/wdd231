@@ -32,6 +32,11 @@
 
     <!-- Site styles -->
     <link rel="stylesheet" href="./styles/style.css" />
+
+   
+    <script>
+        document.documentElement.classList.add('js');
+    </script>
 </head>
 
 <body>
@@ -45,25 +50,14 @@
 
         <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" class="btn" type="button">Menu</button>
 
-        <!-- Keep hidden for JS toggle, but add an accessible label -->
-        <nav id="site-nav" class="nav" aria-label="Primary" hidden>
+        
+        <nav id="site-nav" class="nav" aria-label="Primary">
             <a href="./index.html" aria-current="page">Home</a>
             <a href="./directory.html">Directory</a>
             <a href="./discover.html">Discover</a>
             <a href="./join.html">Join</a>
             <a href="./contact.html">Contact</a>
         </nav>
-
-        <!-- Fallback so non-JS audits still see navigation -->
-        <noscript>
-            <nav class="nav" aria-label="Primary (no JS)">
-                <a href="./index.html" aria-current="page">Home</a>
-                <a href="./directory.html">Directory</a>
-                <a href="./discover.html">Discover</a>
-                <a href="./join.html">Join</a>
-                <a href="./contact.html">Contact</a>
-            </nav>
-        </noscript>
     </header>
 
     <main id="main" class="home">
