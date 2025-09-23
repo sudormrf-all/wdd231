@@ -74,29 +74,35 @@ body {
     border-radius: .35rem;
 }
 
+/* Mobile nav default: closed */
 .nav {
-    display: grid;
+    display: none;
     grid-auto-flow: row;
     gap: .25rem;
-    margin-top: .75rem
+    margin-top: .75rem;
+}
+
+.nav[data-open="true"] {
+    display: grid;
 }
 
 .nav a {
     color: var(--ink);
     text-decoration: none;
     padding: .5rem .75rem;
-    border-radius: .35rem
+    border-radius: .35rem;
 }
 
 .nav a[aria-current="page"] {
     background: #1a2e4c
 }
 
+/* Desktop */
 @media (min-width:760px) {
     .site-header {
         display: grid;
         grid-template-columns: 1fr auto;
-        align-items: center
+        align-items: center;
     }
 
     #menu-toggle {
@@ -106,14 +112,8 @@ body {
     .nav {
         display: flex !important;
         gap: .5rem;
-        margin-top: 0
+        margin-top: 0;
     }
-
-    .nav[hidden] {
-        display: flex !important
-    }
-
-    /* JS removes [hidden] on desktop */
 }
 
 /* Main wrapper */
@@ -165,7 +165,7 @@ body {
     height: 64px;
     object-fit: cover;
     border-radius: .4rem;
-    background: #0b1220
+    background: #0b1220;
 }
 
 .member-card h3 {
@@ -204,50 +204,40 @@ body {
 /* ---------- HOME PAGE ADDITIONS ---------- */
 
 /* HERO */
-/* Layout the hero and ensure the overlay can be absolutely positioned */
 .hero {
     position: relative;
 }
 
 /* establishes containing block for overlay */
-
-/* Ensure the <picture> renders as a block-level element */
 .hero-media {
     display: block;
 }
 
-/* Make the image responsive, preserve 16:9, and fill the box without distortion */
+/* picture as block */
+
+/* Responsive image box */
 .hero-media img {
     display: block;
-    /* removes inline gap below images */
+    /* remove inline gap */
     width: 100%;
-    /* scale to container width */
     height: auto;
-    /* preserve intrinsic ratio when not using aspect-ratio */
     aspect-ratio: 16 / 9;
-    /* maintain 16:9 box responsively */
     object-fit: cover;
-    /* fill hero area without stretching */
     object-position: center;
-    /* center the subject */
 }
 
-/* Overlay that sits on top of the image */
+/* Overlay */
 .hero-overlay {
     position: absolute;
-    /* take out of flow, position over .hero */
     inset: 0;
-    /* stretch to all edges of the hero */
     display: grid;
-    /* easy centering */
     place-items: center;
-    /* center both axes */
     text-align: center;
     padding: 1rem;
     color: #fff;
 }
 
-/* Optional: subtle darkening for readability using a gradient layer */
+/* Readability gradient */
 .hero::before {
     content: "";
     position: absolute;
@@ -256,7 +246,7 @@ body {
     pointer-events: none;
 }
 
-/* Simple CTA styling */
+/* CTA */
 .cta {
     display: inline-block;
     margin-top: 1rem;
@@ -267,7 +257,7 @@ body {
     border-radius: .5rem;
 }
 
-/* FEATURES GRID (Events + Weather) */
+/* FEATURES GRID */
 .features {
     display: grid;
     grid-template-columns: 1fr;
@@ -293,7 +283,7 @@ body {
     padding: 0;
     margin: 0 0 .75rem;
     display: grid;
-    gap: .5rem
+    gap: .5rem;
 }
 
 .event-list h3 {
@@ -427,7 +417,7 @@ body {
     color: #dfe6f1
 }
 
-/* Responsive layout upgrades */
+/* Responsive layout */
 @media (min-width: 760px) {
     .features {
         grid-template-columns: 1fr 1fr

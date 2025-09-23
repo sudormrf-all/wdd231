@@ -18,6 +18,7 @@ function createMemberCard(m) {
     img.alt = `${m.name} logo`;
     img.loading = 'lazy';
     img.width = 64; img.height = 64;
+    img.onerror = () => { img.src = './images/placeholder.png'; img.alt = `${m.name}`; };
 
     const h3 = document.createElement('h3');
     h3.textContent = m.name;
@@ -27,7 +28,7 @@ function createMemberCard(m) {
     const level = m.level === 3 ? 'Gold' : m.level === 2 ? 'Silver' : 'Member';
     meta.innerHTML = `
     <div>${m.address}</div>
-    <div><a href="${m.website}" rel="noopener" target="_blank">${m.website}</a></div>
+    <div><a href="${m.website}" rel="noopener noreferrer" target="_blank">${m.website}</a></div>
     <div>${m.phone}</div>
     <div>Level: ${level}</div>
   `;

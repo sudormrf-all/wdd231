@@ -3,7 +3,6 @@
 const LAT = 41.1496;
 const LON = -8.6109;
 
-
 const OWM_KEY = (typeof window !== 'undefined' && window.OWM_KEY) ? window.OWM_KEY : '';
 
 const els = {
@@ -44,7 +43,7 @@ async function loadWeather() {
         k(els.temp, tempC);
         if (els.icon) {
             els.icon.src = iconUrl(ico);
-            els.icon.alt = desc;
+            // Icon is decorative (alt="" aria-hidden="true" set in HTML)
         }
         k(els.summary, desc.charAt(0).toUpperCase() + desc.slice(1));
 
@@ -119,11 +118,9 @@ const spotlightGrid = document.querySelector('#spotlight-grid');
 function levelName(level) {
     return level === 3 ? 'Gold' : level === 2 ? 'Silver' : 'Member';
 }
-
 function telHref(s) {
     return `tel:${(s || '').replace(/[^\d+]/g, '')}`;
 }
-
 function createSpotlight(m) {
     const card = document.createElement('article');
     card.className = 'spotlight-card';

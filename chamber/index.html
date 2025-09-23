@@ -14,14 +14,12 @@
     <link rel="icon" href="./images/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="./images/icon-180.png" />
 
-
     <!-- Open Graph -->
     <meta property="og:title" content="Porto Valley Chamber | Home" />
     <meta property="og:description" content="Connect, grow, and thrive with the Porto Valley Chamber of Commerce." />
     <meta property="og:image" content="https://sudormrf-all.github.io/wdd231/chamber/images/og-home.jpg" />
     <meta property="og:url" content="https://sudormrf-all.github.io/wdd231/chamber/index.html" />
     <meta property="og:type" content="website" />
-    
 
     <!-- Normalize first -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" />
@@ -46,7 +44,8 @@
 
         <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" class="btn" type="button">Menu</button>
 
-        <nav id="site-nav" class="nav" hidden>
+        <!-- Hidden attribute removed; visibility is controlled via CSS and data-open -->
+        <nav id="site-nav" class="nav" data-open="false">
             <a href="./index.html" aria-current="page">Home</a>
             <a href="./directory.html">Directory</a>
             <a href="./discover.html">Discover</a>
@@ -57,7 +56,6 @@
 
     <main id="main" class="home">
         <!-- HERO -->
-
         <section class="hero" aria-label="Welcome">
             <picture class="hero-media">
                 <source type="image/webp"
@@ -76,14 +74,12 @@
             </div>
         </section>
 
-
         <!-- FEATURE GRID: Events + Weather -->
         <section class="features" aria-label="Highlights">
             <!-- EVENTS -->
             <section class="card events" aria-labelledby="events-heading">
                 <h2 id="events-heading">Upcoming Events</h2>
                 <ul class="event-list">
-
                     <li>
                         <h3>Business Breakfast Meetup</h3>
                         <p>Thursday, 9:00 AM • Praça da Liberdade</p>
@@ -106,7 +102,8 @@
                 <div id="weather-current" class="weather-current">
                     <div class="temp"><span id="temp">—</span><span class="unit">°C</span></div>
                     <div class="desc">
-                        <img id="icon" alt="" width="64" height="64" />
+                        <!-- Decorative icon -->
+                        <img id="icon" alt="" aria-hidden="true" width="64" height="64" />
                         <span id="summary">Loading…</span>
                     </div>
                 </div>
@@ -126,7 +123,8 @@
 
     <footer class="site-footer">
         <address>
-            Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 • info@portovalleychamberexample.pt
+            Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 •
+            <a href="mailto:info@portovalleychamberexample.pt">info@portovalleychamberexample.pt</a>
         </address>
         <p>&copy; <span id="year"></span> Porto Valley Chamber • <span id="student">André Pina</span> • WDD 231</p>
         <p>Last Modification: <span id="lastmod"></span></p>
