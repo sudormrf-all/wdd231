@@ -104,6 +104,7 @@ fieldset.field legend {
 .levels-heading {
     margin: 0 0 .5rem 0;
     font-size: 1.25rem;
+    color: #0f172a;
 }
 
 .levels-grid {
@@ -122,6 +123,7 @@ fieldset.field legend {
 .level-card {
     border: 1px solid rgba(0, 0, 0, .08);
     border-left: 6px solid #FFA500;
+    /* default accent, overridden per-level below */
     border-radius: .75rem;
     background: #fff;
     padding: .85rem .95rem;
@@ -129,25 +131,71 @@ fieldset.field legend {
     animation: cardIn 700ms ease both;
     opacity: 0;
     /* start hidden; animation sets to 1 */
+    color: #0f172a;
+    /* strong contrast text on white */
 }
 
 .level-card h3 {
     margin: 0 0 .25rem 0;
+    color: #0f172a;
 }
 
 .level-card .price {
     margin: 0;
     font-weight: 700;
+    color: #0f172a;
 }
 
 .level-card .summary {
     margin: .15rem 0 .5rem;
-    color: #4b5563;
+    color: #374151;
 }
 
+/* Links inside cards: accessible colors + focus */
 .level-card .open-modal {
     text-decoration: underline;
+    color: #1d4ed8;
+    /* AA on white */
 }
+
+.level-card .open-modal:hover,
+.level-card .open-modal:focus-visible {
+    color: #1e3a8a;
+    /* AAA on white */
+}
+
+.level-card .open-modal:visited {
+    color: #1e40af;
+    /* AAA on white */
+}
+
+.level-card .open-modal:focus-visible {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Level-specific accent borders (decorative) */
+.level-np {
+    border-left-color: #0D9488;
+}
+
+/* teal-600 */
+.level-bronze {
+    border-left-color: #92400E;
+}
+
+/* bronze/brown-700 */
+.level-silver {
+    border-left-color: #374151;
+}
+
+/* slate-700 */
+.level-gold {
+    border-left-color: #B45309;
+}
+
+/* amber-700 */
 
 /* Staggered animation */
 .level-card:nth-child(1) {
