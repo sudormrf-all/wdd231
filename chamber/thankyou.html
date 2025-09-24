@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Porto Valley Chamber | Thank You</title>
+    <meta name="description" content="Thank you for applying to the Porto Valley Chamber." />
+    <meta name="author" content="André Pina" />
+    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/icon-180.png" />
+    <link rel="canonical" href="https://sudormrf-all.github.io/wdd231/chamber/thankyou.html" />
+    <meta property="og:title" content="Thank you for applying" />
+    <meta property="og:description" content="We received your chamber membership application." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0f172a" />
+    <!-- Site styles -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+        main.thanks {
+            margin: 1rem;
+            max-width: 56rem;
+        }
+
+        .confirm {
+            border: 1px solid rgba(0, 0, 0, .1);
+            border-radius: .75rem;
+            background: #fff;
+            padding: 1rem;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, .06);
+        }
+
+        .confirm h2 {
+            margin-top: 0;
+        }
+
+        .data {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: .5rem;
+        }
+
+        @media (min-width: 40rem) {
+            .data {
+                grid-template-columns: max-content 1fr;
+                column-gap: 1rem;
+            }
+
+            .data dt {
+                text-align: right;
+            }
+        }
+
+        dt {
+            font-weight: 700;
+        }
+
+        dd {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="brand">
+            <img src="./images/logo.svg" alt="Porto Valley Chamber logo" width="48" height="48" decoding="async"
+                loading="eager" />
+            <span class="brand-name">Porto Valley Chamber</span>
+        </div>
+
+        <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open main menu"
+            class="btn">Menu</button>
+
+        <nav id="site-nav" class="nav" aria-label="Primary" hidden>
+            <a href="./index.html">Home</a>
+            <a href="./directory.html">Directory</a>
+            <a href="./discover.html">Discover</a>
+            <a href="./join.html" aria-current="page">Join</a>
+            <a href="./contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main id="main-content" class="thanks">
+        <header class="page-header">
+            <h1>Thank You!</h1>
+            <p>We’ve received your application. Below is a copy of the required information you submitted.</p>
+        </header>
+
+        <section class="confirm" aria-label="Submission summary">
+            <h2>Submission Details</h2>
+            <dl class="data">
+                <dt>First Name</dt>
+                <dd id="out-firstName">—</dd>
+                <dt>Last Name</dt>
+                <dd id="out-lastName">—</dd>
+                <dt>Email</dt>
+                <dd id="out-email">—</dd>
+                <dt>Mobile Phone</dt>
+                <dd id="out-phone">—</dd>
+                <dt>Business / Organization</dt>
+                <dd id="out-organization">—</dd>
+                <dt>Timestamp</dt>
+                <dd id="out-timestamp">—</dd>
+            </dl>
+            <p style="margin-top:.75rem;">
+                We will contact you shortly. In the meantime, feel free to <a href="./index.html">return to the home
+                    page</a>.
+            </p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <address>
+            Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 • info@portovalleychamberexample.pt
+        </address>
+        <p>&copy; <span id="year"></span> Porto Valley Chamber • <span id="student">André Pina</span> • WDD 231</p>
+        <p>Last Modification: <span id="lastmod"></span></p>
+    </footer>
+
+    <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/thankyou.js" defer></script>
+    <noscript>This page displays your submitted details using JavaScript.</noscript>
+</body>
+
+</html>

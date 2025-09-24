@@ -1,0 +1,248 @@
+/* Layout */
+.join .page-header {
+    margin: 1rem 1rem 0;
+    max-width: 72rem;
+}
+
+.join-layout {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    max-width: 72rem;
+}
+
+@media (min-width: 62rem) {
+    .join-layout {
+        grid-template-columns: 2fr 1fr;
+        align-items: start;
+    }
+}
+
+/* Form fields */
+.apply form {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.field {
+    display: block;
+}
+
+.label-text {
+    display: inline-block;
+    margin-bottom: .25rem;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    max-width: 36rem;
+    padding: .625rem .75rem;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .5rem;
+    font: inherit;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+    outline: 3px solid rgba(59, 130, 246, .35);
+    border-color: rgba(59, 130, 246, .8);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Radio group */
+fieldset.field {
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: .75rem .85rem;
+    border-radius: .5rem;
+}
+
+fieldset.field legend {
+    font-weight: 700;
+    padding: 0 .25rem;
+}
+
+.levels-choices {
+    list-style: none;
+    padding: 0;
+    margin: .25rem 0 0 0;
+    display: grid;
+    gap: .25rem;
+}
+
+.levels-choices label {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: .5rem;
+}
+
+/* Actions */
+.actions {
+    margin-top: .5rem;
+}
+
+.actions .btn.cta {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+/* Levels aside */
+.levels {
+    padding-top: .25rem;
+}
+
+.levels-heading {
+    margin: 0 0 .5rem 0;
+    font-size: 1.25rem;
+}
+
+.levels-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .75rem;
+}
+
+@media (min-width: 34rem) {
+    .levels-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Cards */
+.level-card {
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-left: 6px solid #FFA500;
+    border-radius: .75rem;
+    background: #fff;
+    padding: .85rem .95rem;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
+    animation: cardIn 700ms ease both;
+    opacity: 0;
+    /* start hidden; animation sets to 1 */
+}
+
+.level-card h3 {
+    margin: 0 0 .25rem 0;
+}
+
+.level-card .price {
+    margin: 0;
+    font-weight: 700;
+}
+
+.level-card .summary {
+    margin: .15rem 0 .5rem;
+    color: #4b5563;
+}
+
+.level-card .open-modal {
+    text-decoration: underline;
+}
+
+/* Staggered animation */
+.level-card:nth-child(1) {
+    animation-delay: 60ms;
+}
+
+.level-card:nth-child(2) {
+    animation-delay: 160ms;
+}
+
+.level-card:nth-child(3) {
+    animation-delay: 260ms;
+}
+
+.level-card:nth-child(4) {
+    animation-delay: 360ms;
+}
+
+@keyframes cardIn {
+    from {
+        transform: translateY(12px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Dialog (modal) */
+dialog {
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1rem 0.75rem;
+    width: min(92vw, 560px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, .5);
+}
+
+dialog h3 {
+    margin-top: 0;
+}
+
+dialog .fee {
+    font-weight: 700;
+}
+
+dialog .benefits {
+    padding-left: 1.15rem;
+}
+
+dialog .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: .5rem;
+}
+
+dialog .btn {
+    min-height: 40px;
+    padding: .5rem .75rem;
+}
+
+/* Accessibility helpers */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.skip-link:focus {
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    padding: .5rem .75rem;
+    background: #111827;
+    color: #fff;
+    z-index: 1000;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .level-card {
+        animation: none;
+        opacity: 1;
+    }
+
+    * {
+        transition: none !important;
+    }
+}

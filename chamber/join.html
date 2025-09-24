@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Porto Valley Chamber | Join</title>
+    <meta name="description" content="Apply to join the Porto Valley Chamber of Commerce." />
+    <meta name="author" content="André Pina" />
+    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/icon-180.png" />
+    <link rel="canonical" href="https://sudormrf-all.github.io/wdd231/chamber/join.html" />
+    <meta property="og:title" content="Join the Porto Valley Chamber" />
+    <meta property="og:description" content="Membership application with benefits for NP, Bronze, Silver, and Gold." />
+    <meta property="og:url" content="https://sudormrf-all.github.io/wdd231/chamber/join.html" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0f172a" />
+    <!-- Site styles -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/join.css" />
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="brand">
+            <img src="./images/logo.svg" alt="Porto Valley Chamber logo" width="48" height="48" decoding="async"
+                loading="eager" />
+            <span class="brand-name">Porto Valley Chamber</span>
+        </div>
+
+        <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open main menu"
+            class="btn">Menu</button>
+
+        <nav id="site-nav" class="nav" aria-label="Primary" hidden>
+            <a href="./index.html">Home</a>
+            <a href="./directory.html">Directory</a>
+            <a href="./discover.html">Discover</a>
+            <a href="./join.html" aria-current="page">Join</a>
+            <a href="./contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main id="main-content" class="join">
+        <header class="page-header">
+            <h1>Join the Chamber</h1>
+            <p>Apply in minutes. Non‑profits join for free; paid tiers add more benefits and visibility.</p>
+        </header>
+
+        <!-- Two-column layout: form | membership cards -->
+        <section class="join-layout">
+            <!-- Application Form -->
+            <section class="apply" aria-label="Membership application form">
+                <h2 class="sr-only">Application</h2>
+
+                <form method="get" action="./thankyou.html" autocomplete="on" novalidate>
+                    <!-- First name (required) -->
+                    <label class="field">
+                        <span class="label-text">First Name <span aria-hidden="true">*</span></span>
+                        <input type="text" name="firstName" id="firstName" required
+                            title="Please enter your given name." autocomplete="given-name" inputmode="text" />
+                    </label>
+
+                    <!-- Last name (required) -->
+                    <label class="field">
+                        <span class="label-text">Last Name <span aria-hidden="true">*</span></span>
+                        <input type="text" name="lastName" id="lastName" required title="Please enter your family name."
+                            autocomplete="family-name" inputmode="text" />
+                    </label>
+
+                    <!-- Organizational title (pattern, min 7, letters/hyphens/spaces) -->
+                    <label class="field">
+                        <span class="label-text">Organizational Title</span>
+                        <input type="text" name="organizationTitle" id="organizationTitle"
+                            title="Use only letters, hyphens, and spaces; minimum 7 characters (e.g., Marketing Director)."
+                            autocomplete="organization-title" pattern="^[A-Za-z\-\s]{7,}$" inputmode="text"
+                            placeholder="e.g., Marketing Director" />
+                    </label>
+
+                    <!-- Email (required) -->
+                    <label class="field">
+                        <span class="label-text">Email <span aria-hidden="true">*</span></span>
+                        <input type="email" name="email" id="email" required title="Enter a valid email address."
+                            autocomplete="email" placeholder="e.g., name@example.com" inputmode="email" />
+                    </label>
+
+                    <!-- Mobile phone (required) -->
+                    <label class="field">
+                        <span class="label-text">Mobile Phone <span aria-hidden="true">*</span></span>
+                        <input type="tel" name="phone" id="phone" required title="Enter your mobile number."
+                            autocomplete="tel" inputmode="tel" placeholder="e.g., +351 912 345 678" />
+                    </label>
+
+                    <!-- Organization name (required) -->
+                    <label class="field">
+                        <span class="label-text">Business / Organization Name <span aria-hidden="true">*</span></span>
+                        <input type="text" name="organization" id="organization" required
+                            title="Enter your business or organization name." autocomplete="organization"
+                            inputmode="text" />
+                    </label>
+
+                    <!-- Membership level (radio group) -->
+                    <fieldset class="field">
+                        <legend>Membership Level</legend>
+                        <ul class="levels-choices">
+                            <li>
+                                <label>
+                                    <input type="radio" name="membership" value="NP" required
+                                        title="Select NP (Non‑Profit) membership." />
+                                    NP Membership — Non‑Profit (Free)
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="membership" value="Bronze"
+                                        title="Select Bronze membership." />
+                                    Bronze Membership
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="membership" value="Silver"
+                                        title="Select Silver membership." />
+                                    Silver Membership
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="membership" value="Gold"
+                                        title="Select Gold membership." />
+                                    Gold Membership
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+
+                    <!-- Organization description -->
+                    <label class="field">
+                        <span class="label-text">Organization Description</span>
+                        <textarea name="description" id="description" rows="5"
+                            title="Tell us a little about your organization—mission, services, and who you serve."
+                            placeholder="Describe your organization’s mission, products/services, and audience."></textarea>
+                    </label>
+
+                    <!-- Hidden timestamp (set when page loads) -->
+                    <input type="hidden" id="timestamp" name="timestamp" />
+
+                    <!-- Submit -->
+                    <div class="actions">
+                        <input type="submit" value="Apply for Membership" class="btn cta" />
+                    </div>
+                </form>
+            </section>
+
+            <!-- Membership Level Cards (animate on initial load) -->
+            <aside class="levels" aria-label="Membership levels and benefits">
+                <h2 class="levels-heading">Membership Levels</h2>
+
+                <div class="levels-grid">
+                    <article class="level-card level-np" aria-labelledby="card-np-title">
+                        <h3 id="card-np-title">NP Membership</h3>
+                        <p class="price">€0 / year</p>
+                        <p class="summary">For registered non‑profit organizations.</p>
+                        <p><a href="#modal-np" class="open-modal" data-modal="modal-np">Benefits &amp; details</a></p>
+                    </article>
+
+                    <article class="level-card level-bronze" aria-labelledby="card-bronze-title">
+                        <h3 id="card-bronze-title">Bronze</h3>
+                        <p class="price">€120 / year</p>
+                        <p class="summary">Core visibility &amp; event savings.</p>
+                        <p><a href="#modal-bronze" class="open-modal" data-modal="modal-bronze">Benefits &amp;
+                                details</a></p>
+                    </article>
+
+                    <article class="level-card level-silver" aria-labelledby="card-silver-title">
+                        <h3 id="card-silver-title">Silver</h3>
+                        <p class="price">€240 / year</p>
+                        <p class="summary">Added promotion &amp; training.</p>
+                        <p><a href="#modal-silver" class="open-modal" data-modal="modal-silver">Benefits &amp;
+                                details</a></p>
+                    </article>
+
+                    <article class="level-card level-gold" aria-labelledby="card-gold-title">
+                        <h3 id="card-gold-title">Gold</h3>
+                        <p class="price">€480 / year</p>
+                        <p class="summary">Premium exposure &amp; sponsorships.</p>
+                        <p><a href="#modal-gold" class="open-modal" data-modal="modal-gold">Benefits &amp; details</a>
+                        </p>
+                    </article>
+                </div>
+            </aside>
+        </section>
+
+        <!-- MODALS (native HTML <dialog>) -->
+        <dialog id="modal-np" aria-labelledby="modal-np-title">
+            <h3 id="modal-np-title">NP Membership (Non‑Profit)</h3>
+            <p class="fee">Fee: €0 / year</p>
+            <ul class="benefits">
+                <li>Directory listing (Non‑Profit badge)</li>
+                <li>Access to member-only events (select)</li>
+                <li>Community training: 2 free sessions / year</li>
+                <li>Event discounts up to 10%</li>
+            </ul>
+            <form method="dialog" class="modal-actions">
+                <button class="btn">Close</button>
+            </form>
+        </dialog>
+
+        <dialog id="modal-bronze" aria-labelledby="modal-bronze-title">
+            <h3 id="modal-bronze-title">Bronze Membership</h3>
+            <p class="fee">Fee: €120 / year</p>
+            <ul class="benefits">
+                <li>All NP benefits</li>
+                <li>Event discounts up to 15%</li>
+                <li>Job board postings (2 / month)</li>
+                <li>Directory listing with logo</li>
+            </ul>
+            <form method="dialog" class="modal-actions">
+                <button class="btn">Close</button>
+            </form>
+        </dialog>
+
+        <dialog id="modal-silver" aria-labelledby="modal-silver-title">
+            <h3 id="modal-silver-title">Silver Membership</h3>
+            <p class="fee">Fee: €240 / year</p>
+            <ul class="benefits">
+                <li>All Bronze benefits</li>
+                <li>Event discounts up to 20%</li>
+                <li>1 homepage spotlight / quarter</li>
+                <li>Social media promotion (2 / quarter)</li>
+            </ul>
+            <form method="dialog" class="modal-actions">
+                <button class="btn">Close</button>
+            </form>
+        </dialog>
+
+        <dialog id="modal-gold" aria-labelledby="modal-gold-title">
+            <h3 id="modal-gold-title">Gold Membership</h3>
+            <p class="fee">Fee: €480 / year</p>
+            <ul class="benefits">
+                <li>All Silver benefits</li>
+                <li>Event discounts up to 25%</li>
+                <li>Priority homepage spotlight (2 / quarter)</li>
+                <li>Sponsorship credits at select events</li>
+            </ul>
+            <form method="dialog" class="modal-actions">
+                <button class="btn">Close</button>
+            </form>
+        </dialog>
+    </main>
+
+    <footer class="site-footer">
+        <address>
+            Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 • info@portovalleychamberexample.pt
+        </address>
+        <p>&copy; <span id="year"></span> Porto Valley Chamber • <span id="student">André Pina</span> • WDD 231</p>
+        <p>Last Modification: <span id="lastmod"></span></p>
+    </footer>
+
+    <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/join.js" defer></script>
+    <noscript>JavaScript is required to set the form timestamp and open membership details.</noscript>
+</body>
+
+</html>
