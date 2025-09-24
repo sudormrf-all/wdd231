@@ -2,7 +2,6 @@
     // Fill hidden timestamp when the form loads
     const ts = document.getElementById('timestamp');
     if (ts) {
-        // ISO gives a stable format for later parsing/display
         ts.value = new Date().toISOString();
     }
 
@@ -15,7 +14,8 @@
             const dlg = document.getElementById(id);
             if (dlg && typeof dlg.showModal === 'function') {
                 dlg.showModal();
-                // Close on backdrop click
+
+                // Close on backdrop click (one-time listener)
                 dlg.addEventListener('click', (evt) => {
                     const rect = dlg.getBoundingClientRect();
                     const inDialog =
@@ -24,6 +24,14 @@
                     if (!inDialog) dlg.close();
                 }, { once: true });
             }
+        });
+    });
+
+    // Close via explicit buttons (no extra <form> elements)
+    document.querySelectorAll('dialog .modal-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const dlg = btn.closest('dialog');
+            if (dlg) dlg.close();
         });
     });
 })();
