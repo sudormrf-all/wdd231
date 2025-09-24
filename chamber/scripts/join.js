@@ -34,4 +34,21 @@
             if (dlg) dlg.close();
         });
     });
+
+    
+    document.querySelectorAll('dialog form[method="dialog"]').forEach(f => {
+        const dlg = f.closest('dialog');
+        const wrapper = document.createElement('div');
+        wrapper.className = f.className || 'modal-actions';
+        // Convert any buttons to type=button and mark as modal-close
+        f.querySelectorAll('button').forEach(b => {
+            b.type = 'button';
+            b.classList.add('modal-close');
+        });
+        while (f.firstChild) wrapper.appendChild(f.firstChild);
+        f.replaceWith(wrapper);
+        wrapper.addEventListener('click', (e) => {
+            if (e.target.closest('.modal-close')) dlg?.close();
+        });
+    });
 })();
