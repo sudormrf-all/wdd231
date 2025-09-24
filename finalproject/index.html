@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Trail Mix Lab • Build Your Perfect Mix</title>
+  <meta name="description" content="Design a custom trail mix—discover nuts, fruits, seeds, and sweets. Filter by allergens and nutrition, then assemble your perfect blend." />
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="First Last" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="css/styles.css" as="style" />
+<link rel="stylesheet" href="css/styles.css" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Trail Mix Lab" />
+<meta property="og:image" content="assets/og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+</head>
+<body data-page="home">
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <div class="navbar" role="navigation" aria-label="Primary">
+    <a class="brand" href="index.html">
+      <img src="assets/favicon.svg" width="28" height="28" alt="Trail Mix Lab logo" />
+      <span>Trail Mix Lab</span>
+    </a>
+    <div class="nav-wrap">
+      <button id="menuButton" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+        ☰
+      </button>
+      <nav id="primaryNav" class="nav">
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌗</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="text">
+      <h1>Build your perfect hiking snack.</h1>
+      <p>Create a balanced trail mix from wholesome nuts, fruits, seeds, and a few treats. Filter, compare, and save your favorites.</p>
+      <a class="cta" href="explore.html">Start Building</a>
+    </div>
+    <picture>
+      <img src="images/hero.svg" width="1200" height="500" alt="Illustration of bowls filled with trail mix ingredients" loading="eager" decoding="async">
+    </picture>
+  </section>
+
+  <section class="section">
+    <h2>Featured ingredients</h2>
+    <div id="featured" class="card-grid" aria-live="polite"></div>
+  </section>
+
+  <section class="section">
+    <h2>Why Trail Mix Lab?</h2>
+    <div class="card-grid">
+      <article class="card">
+        <h3>Nutrition, at a glance</h3>
+        <p>Every ingredient lists calories, macros, and allergens, so you can tailor a mix for energy and preferences.</p>
+      </article>
+      <article class="card">
+        <h3>Filter fast</h3>
+        <p>Vegan? Gluten free? Want low sugar? Use the filters to instantly narrow the list.</p>
+      </article>
+      <article class="card">
+        <h3>Save your mix</h3>
+        <p>Your selections are stored in your browser, so your custom blend is ready when you return.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Peek in the bowls</h2>
+    <picture>
+      <img src="images/mix-bowls.svg" width="900" height="300" alt="Stylized bowls of trail mix ingredients" loading="lazy" decoding="async">
+    </picture>
+  </section>
+</main>
+<footer>
+  <div class="footwrap">
+    <nav aria-label="Footer">
+      <a href="attributions.html">Attributions</a>
+      <a id="demoVideoLink" href="#" rel="noopener">Project Demo Video</a>
+      <a href="https://web.dev/measure/" target="_blank" rel="noopener">Audit (Lighthouse)</a>
+    </nav>
+    <small>&copy; <span id="year"></span> Trail Mix Lab • Built with modern HTML, CSS &amp; JavaScript.</small>
+  </div>
+</footer>
+<script type="module" src="js/nav.js"></script>
+<script type="module" src="js/theme.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<script type="module" src="js/index.js"></script>
+</body>
+</html>

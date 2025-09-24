@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Submission Received • Trail Mix Lab</title>
+  <meta name="description" content="Form submission display page. Review the details you sent." />
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="First Last" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="css/styles.css" as="style" />
+<link rel="stylesheet" href="css/styles.css" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Trail Mix Lab" />
+<meta property="og:image" content="assets/og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+</head>
+<body data-page="thanks">
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <div class="navbar" role="navigation" aria-label="Primary">
+    <a class="brand" href="index.html">
+      <img src="assets/favicon.svg" width="28" height="28" alt="Trail Mix Lab logo" />
+      <span>Trail Mix Lab</span>
+    </a>
+    <div class="nav-wrap">
+      <button id="menuButton" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+        ☰
+      </button>
+      <nav id="primaryNav" class="nav">
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌗</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="section">
+  <h1>Thanks! Here’s what you sent</h1>
+  <p>Verify your information below. If something is off, use your browser's back button to make edits and resubmit.</p>
+
+  <div id="submission"></div>
+</main>
+<footer>
+  <div class="footwrap">
+    <nav aria-label="Footer">
+      <a href="attributions.html">Attributions</a>
+      <a id="demoVideoLink" href="#" rel="noopener">Project Demo Video</a>
+      <a href="https://web.dev/measure/" target="_blank" rel="noopener">Audit (Lighthouse)</a>
+    </nav>
+    <small>&copy; <span id="year"></span> Trail Mix Lab • Built with modern HTML, CSS &amp; JavaScript.</small>
+  </div>
+</footer>
+<script type="module" src="js/nav.js"></script>
+<script type="module" src="js/theme.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<script type="module" src="js/thanks.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Explore Ingredients • Trail Mix Lab</title>
+  <meta name="description" content="Browse 18+ ingredients with price and nutrition. Filter by category, allergens, vegan, or price—then add to your saved mix." />
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="First Last" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="css/styles.css" as="style" />
+<link rel="stylesheet" href="css/styles.css" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Trail Mix Lab" />
+<meta property="og:image" content="assets/og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+</head>
+<body data-page="explore">
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <div class="navbar" role="navigation" aria-label="Primary">
+    <a class="brand" href="index.html">
+      <img src="assets/favicon.svg" width="28" height="28" alt="Trail Mix Lab logo" />
+      <span>Trail Mix Lab</span>
+    </a>
+    <div class="nav-wrap">
+      <button id="menuButton" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+        ☰
+      </button>
+      <nav id="primaryNav" class="nav">
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌗</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="section">
+  <h1>Explore ingredients</h1>
+
+  <div class="toolbar" role="region" aria-label="Filters">
+    <div class="row">
+      <div class="input">
+        <label for="category">Category</label>
+        <select id="category">
+          <option value="all">All</option>
+          <option value="nut">Nuts</option>
+          <option value="fruit">Fruits</option>
+          <option value="seed">Seeds</option>
+          <option value="sweet">Sweets</option>
+          <option value="crunch">Crunch</option>
+        </select>
+      </div>
+      <div class="input">
+        <label for="price">Max price (per 100g): <output id="priceOut"></output></label>
+        <input type="range" id="price" min="0.5" max="2.5" step="0.05" value="2.5" />
+      </div>
+      <div class="input">
+        <label for="search">Search</label>
+        <input id="search" type="search" placeholder="Try: chocolate, mango, omega" />
+      </div>
+    </div>
+
+    <div class="row">
+      <fieldset>
+        <legend>Allergens (exclude)</legend>
+        <label><input type="checkbox" value="peanut" class="allergen" /> Peanuts</label>
+        <label><input type="checkbox" value="treenut" class="allergen" /> Tree nuts</label>
+        <label><input type="checkbox" value="dairy" class="allergen" /> Dairy</label>
+        <label><input type="checkbox" value="soy" class="allergen" /> Soy</label>
+        <label><input type="checkbox" value="gluten" class="allergen" /> Gluten</label>
+      </fieldset>
+      <div class="input">
+        <label><input id="veganOnly" type="checkbox" /> Vegan only</label>
+        <p class="help">Shows only items marked vegan.</p>
+      </div>
+      <div class="input">
+        <label for="sort">Sort by</label>
+        <select id="sort">
+          <option value="name">Name (A–Z)</option>
+          <option value="price">Price (low→high)</option>
+          <option value="calories">Calories (low→high)</option>
+          <option value="rating">Rating (high→low)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <p class="stats" id="stats" aria-live="polite">Loading…</p>
+
+  <div class="grid-2">
+    <section aria-label="Results">
+      <div id="results" class="card-grid"></div>
+    </section>
+
+    <aside class="mix" aria-label="Your mix">
+      <h3>Your mix</h3>
+      <ul id="mixList" class="mix-list"></ul>
+      <p><strong>Total:</strong> <span id="mixTotal">0 g • $0.00</span></p>
+      <div class="actions">
+        <button id="clearMix">Clear</button>
+        <a class="button primary" href="contact.html">Order / Contact</a>
+      </div>
+      <small>Saved locally in your browser.</small>
+    </aside>
+  </div>
+
+  <dialog id="detailDialog" aria-labelledby="detailTitle">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <h3 id="detailTitle">Item details</h3>
+        <button class="close-button" data-close-dialog aria-label="Close details">✕</button>
+      </div>
+      <div class="dialog-body" id="detailBody"></div>
+    </div>
+  </dialog>
+</main>
+<footer>
+  <div class="footwrap">
+    <nav aria-label="Footer">
+      <a href="attributions.html">Attributions</a>
+      <a id="demoVideoLink" href="#" rel="noopener">Project Demo Video</a>
+      <a href="https://web.dev/measure/" target="_blank" rel="noopener">Audit (Lighthouse)</a>
+    </nav>
+    <small>&copy; <span id="year"></span> Trail Mix Lab • Built with modern HTML, CSS &amp; JavaScript.</small>
+  </div>
+</footer>
+<script type="module" src="js/nav.js"></script>
+<script type="module" src="js/theme.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<script type="module" src="js/explore.js"></script>
+</body>
+</html>

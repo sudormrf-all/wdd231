@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Contact & Order • Trail Mix Lab</title>
+  <meta name="description" content="Send your custom trail mix request or questions. Your saved mix is included for easy ordering." />
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="First Last" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="css/styles.css" as="style" />
+<link rel="stylesheet" href="css/styles.css" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Trail Mix Lab" />
+<meta property="og:image" content="assets/og-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+</head>
+<body data-page="contact">
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <div class="navbar" role="navigation" aria-label="Primary">
+    <a class="brand" href="index.html">
+      <img src="assets/favicon.svg" width="28" height="28" alt="Trail Mix Lab logo" />
+      <span>Trail Mix Lab</span>
+    </a>
+    <div class="nav-wrap">
+      <button id="menuButton" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+        ☰
+      </button>
+      <nav id="primaryNav" class="nav">
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌗</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="section">
+  <h1>Contact &amp; Order</h1>
+  <p>Send a message with your saved mix and size. We’ll display what you send on the next page so you can verify it.</p>
+
+  <form id="contactForm" action="form-success.html" method="get" novalidate>
+    <div class="input">
+      <label for="name">Full name</label>
+      <input id="name" name="name" type="text" required minlength="2" autocomplete="name" />
+      <p class="help">Required.</p>
+    </div>
+
+    <div class="input">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required autocomplete="email" />
+      <p class="help">We'll reply here.</p>
+    </div>
+
+    <div class="input">
+      <label for="size">Mix size</label>
+      <select id="size" name="size" required>
+        <option value="250g">250 g</option>
+        <option value="500g">500 g</option>
+        <option value="1kg">1 kg</option>
+      </select>
+    </div>
+
+    <fieldset>
+      <legend>Preferences</legend>
+      <label><input type="checkbox" name="pref" value="crunchy" /> Extra crunchy</label>
+      <label><input type="checkbox" name="pref" value="fruity" /> Fruit-forward</label>
+      <label><input type="checkbox" name="pref" value="chocolatey" /> Chocolatey</label>
+      <label><input type="checkbox" name="pref" value="low_salt" /> Low salt</label>
+    </fieldset>
+
+    <div class="input">
+      <label for="notes">Notes</label>
+      <textarea id="notes" name="notes" rows="4" placeholder="Any substitutions or allergies?"></textarea>
+    </div>
+
+    <div class="input">
+      <label><input type="checkbox" id="agree" name="agree" required /> I confirm the above information is correct.</label>
+    </div>
+
+    <input type="hidden" id="mixData" name="mix" value="" />
+
+    <div class="actions">
+      <button type="submit" class="button primary">Send</button>
+      <button type="reset">Reset</button>
+    </div>
+  </form>
+
+  <hr />
+
+  <section aria-label="Your saved mix preview">
+    <h2>Saved mix (preview)</h2>
+    <ul id="mixPreview" class="mix-list"></ul>
+    <p><strong>Total:</strong> <span id="mixPreviewTotal">0 g • $0.00</span></p>
+  </section>
+</main>
+<footer>
+  <div class="footwrap">
+    <nav aria-label="Footer">
+      <a href="attributions.html">Attributions</a>
+      <a id="demoVideoLink" href="#" rel="noopener">Project Demo Video</a>
+      <a href="https://web.dev/measure/" target="_blank" rel="noopener">Audit (Lighthouse)</a>
+    </nav>
+    <small>&copy; <span id="year"></span> Trail Mix Lab • Built with modern HTML, CSS &amp; JavaScript.</small>
+  </div>
+</footer>
+<script type="module" src="js/nav.js"></script>
+<script type="module" src="js/theme.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<script type="module" src="js/contact.js"></script>
+</body>
+</html>

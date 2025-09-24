@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300">
+  <rect width="900" height="300" fill="#263238"/>
+  <g transform="translate(70,100)">
+    <ellipse cx="120" cy="120" rx="120" ry="30" fill="#5d4037"/>
+    <ellipse cx="120" cy="90" rx="110" ry="25" fill="#8d6e63"/>
+    <g transform="translate(60,60)" fill="#ffe082">
+      <ellipse cx="0" cy="0" rx="18" ry="24"/>
+      <ellipse cx="40" cy="-10" rx="18" ry="24"/>
+      <ellipse cx="80" cy="5" rx="18" ry="24"/>
+    </g>
+  </g>
+  <g transform="translate(360,120)">
+    <ellipse cx="120" cy="100" rx="120" ry="28" fill="#5d4037"/>
+    <ellipse cx="120" cy="72" rx="110" ry="22" fill="#8d6e63"/>
+    <g transform="translate(65,50)" fill="#ffab91">
+      <circle cx="0" cy="0" r="12"/>
+      <circle cx="30" cy="-8" r="12"/>
+      <circle cx="60" cy="6" r="12"/>
+      <circle cx="90" cy="-4" r="12"/>
+    </g>
+  </g>
+  <g transform="translate(650,140)">
+    <ellipse cx="120" cy="80" rx="120" ry="26" fill="#5d4037"/>
+    <ellipse cx="120" cy="60" rx="110" ry="20" fill="#8d6e63"/>
+    <g transform="translate(60,30)" fill="#c5e1a5">
+      <rect x="0" y="0" width="24" height="24" rx="4"/>
+      <rect x="30" y="-6" width="24" height="24" rx="4"/>
+      <rect x="60" y="8" width="24" height="24" rx="4"/>
+      <rect x="90" y="-2" width="24" height="24" rx="4"/>
+    </g>
+  </g>
+</svg>
