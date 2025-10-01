@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Porto Valley Chamber | Discover</title>
+    <meta name="description"
+        content="Discover places and experiences in the Porto Valley area—great for visitors and prospective members." />
+    <meta name="author" content="André Pina" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/icon-180.png" />
+
+    <!-- Canonical + Open Graph (LOCAL image) -->
+    <link rel="canonical" href="https://sudormrf-all.github.io/wdd231/chamber/discover.html" />
+    <meta property="og:title" content="Porto Valley Chamber | Discover" />
+    <meta property="og:description" content="Eight curated places to see in the Porto Valley area." />
+    <meta property="og:url" content="https://sudormrf-all.github.io/wdd231/chamber/discover.html" />
+    <meta property="og:image" content="./images/og-home.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- Site styles -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/discover.css" />
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="brand">
+            <img src="./images/logo.svg" alt="Porto Valley Chamber logo" width="48" height="48" decoding="async"
+                loading="eager" />
+            <span class="brand-name">Porto Valley Chamber</span>
+        </div>
+
+        <button id="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open main menu"
+            class="btn">Menu</button>
+
+        <nav id="site-nav" class="nav" aria-label="Primary" hidden>
+            <a href="./index.html">Home</a>
+            <a href="./directory.html">Directory</a>
+            <a href="./discover.html" aria-current="page">Discover</a>
+            <a href="./join.html">Join</a>
+            <a href="./contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main id="main-content" class="discover">
+        <header class="page-header">
+            <h1>Discover Porto Valley</h1>
+            <p>Eight can’t‑miss spots—from iconic landmarks to cultural favorites. Save this page and come back often!
+            </p>
+        </header>
+
+        <!-- Page grid with named areas -->
+        <section class="discover-grid">
+            <!-- Sidebar: Last-visit message -->
+            <aside class="visitor-box" aria-labelledby="visitor-title">
+                <h2 id="visitor-title">Visitor Info</h2>
+                <p id="visit-message" class="visit-message">Loading visit info…</p>
+
+                <div class="quick-facts">
+                    <h3>Quick Facts</h3>
+                    <ul>
+                        <li>Region: Greater Porto, Portugal</li>
+                        <li>Highlights: Bridges, architecture, cuisine</li>
+                        <li>Getting around: Metro, buses, walking</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Gallery: 8 cards from JSON -->
+            <section class="gallery" aria-label="Places of interest">
+                <h2 class="sr-only">Gallery</h2>
+                <div id="gallery" class="gallery-grid" aria-live="polite">
+                    <!-- JS inserts 8 .poi-card articles here -->
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <address>
+            Porto Valley Chamber • Rua do Mercado 10, Porto, PT • +351 555 123 456 • info@portovalleychamberexample.pt
+        </address>
+        <p>&copy; <span id="year"></span> Porto Valley Chamber • <span id="student">André Pina</span> • WDD 231</p>
+        <p>Last Modification: <span id="lastmod"></span></p>
+    </footer>
+
+    <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/discover.js" defer></script>
+    <noscript>This page loads the gallery and visit message with JavaScript.</noscript>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+/* Page header */
+.discover .page-header {
+    margin: 1rem 1rem 0;
+    max-width: 72rem;
+}
+
+.discover .page-header h1 {
+    margin-bottom: .25rem;
+}
+
+/* ---------- PAGE GRID (named grid areas) ---------- */
+.discover-grid {
+    margin: 1rem;
+    max-width: 72rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "sidebar"
+        "gallery";
+}
+
+/* Medium screens: sidebar left, gallery right */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .discover-grid {
+        grid-template-columns: 280px 1fr;
+        grid-template-areas: "sidebar gallery";
+        align-items: start;
+    }
+}
+
+/* Large screens: wider sidebar */
+@media (min-width: 1025px) {
+    .discover-grid {
+        grid-template-columns: 320px 1fr;
+        grid-template-areas: "sidebar gallery";
+        align-items: start;
+    }
+}
+
+.visitor-box {
+    grid-area: sidebar;
+}
+
+.gallery {
+    grid-area: gallery;
+}
+
+/* Sidebar card */
+.visitor-box {
+    background: #fff;
+    color: #0f172a;
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-left: 6px solid #0EA5E9;
+    /* cyan accent */
+    border-radius: .75rem;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .06);
+    padding: 1rem;
+}
+
+.visitor-box h2 {
+    margin: 0 0 .25rem 0;
+}
+
+.visit-message {
+    margin: .25rem 0 .75rem;
+    color: #374151;
+}
+
+.quick-facts h3 {
+    margin: .5rem 0 .25rem;
+    font-size: 1rem;
+}
+
+.quick-facts ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+/* ---------- GALLERY GRID (named areas for the eight cards) ---------- */
+.gallery-grid {
+    display: grid;
+    gap: 0.9rem;
+    /* Small screens: stack all cards using named areas */
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "a"
+        "b"
+        "c"
+        "d"
+        "e"
+        "f"
+        "g"
+        "h";
+}
+
+/* Medium: two columns */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "a b"
+            "c d"
+            "e f"
+            "g h";
+    }
+}
+
+/* Large: more expressive layout with repeated named areas */
+@media (min-width: 1025px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        grid-template-areas:
+            "a a b c"
+            "d e e f"
+            "g h h f";
+    }
+}
+
+/* Map each card to its named area via data attribute */
+.poi-card[data-area="a"] {
+    grid-area: a;
+}
+
+.poi-card[data-area="b"] {
+    grid-area: b;
+}
+
+.poi-card[data-area="c"] {
+    grid-area: c;
+}
+
+.poi-card[data-area="d"] {
+    grid-area: d;
+}
+
+.poi-card[data-area="e"] {
+    grid-area: e;
+}
+
+.poi-card[data-area="f"] {
+    grid-area: f;
+}
+
+.poi-card[data-area="g"] {
+    grid-area: g;
+}
+
+.poi-card[data-area="h"] {
+    grid-area: h;
+}
+
+/* ---------- CARD STYLES ---------- */
+.poi-card {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto auto;
+    gap: .5rem;
+    padding: .85rem;
+    background: #fff;
+    color: #0f172a;
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: .75rem;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .06);
+}
+
+.poi-card h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.25;
+}
+
+.poi-card figure {
+    margin: 0;
+}
+
+.poi-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: .5rem;
+}
+
+.poi-card address {
+    font-style: normal;
+    color: #4b5563;
+}
+
+.poi-card p {
+    margin: 0;
+    color: #374151;
+}
+
+/* Learn more button (type=button) */
+.poi-card .learn-more {
+    margin-top: .35rem;
+    justify-self: start;
+    padding: .55rem .8rem;
+    border-radius: .5rem;
+    border: 1px solid #1d4ed8;
+    background: #1d4ed8;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+    min-height: 40px;
+}
+
+.poi-card .learn-more:hover,
+.poi-card .learn-more:focus-visible {
+    background: #1e3a8a;
+    border-color: #1e3a8a;
+    outline: none;
+}
+
+/* ---------- HOVER EFFECT (disabled on mobile) ---------- */
+@media (hover: hover) and (pointer: fine) and (min-width: 641px) {
+    .poi-card img {
+        transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
+    }
+
+    .poi-card:hover img {
+        transform: scale(1.035);
+        filter: saturate(1.1) contrast(1.05);
+    }
+
+    .poi-card:hover {
+        box-shadow: 0 16px 40px rgba(0, 0, 0, .12);
+    }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .poi-card img {
+        transition: none;
+    }
+}
+

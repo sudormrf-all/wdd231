@@ -18,7 +18,7 @@
 <body data-page="contact">
 <a class="skip-link" href="#main">Skip to content</a>
 <header>
-  <div class="navbar" role="navigation" aria-label="Primary">
+  <div class="navbar">
     <a class="brand" href="index.html">
       <img src="assets/favicon.svg" width="28" height="28" alt="Trail Mix Lab logo" />
       <span>Trail Mix Lab</span>
@@ -27,7 +27,7 @@
       <button id="menuButton" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
         ☰
       </button>
-      <nav id="primaryNav" class="nav">
+      <nav id="primaryNav" class="nav" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="explore.html">Explore</a>
         <a href="contact.html">Contact</a>
@@ -41,7 +41,7 @@
   <h1>Contact &amp; Order</h1>
   <p>Send a message with your saved mix and size. We’ll display what you send on the next page so you can verify it.</p>
 
-  <form id="contactForm" action="form-success.html" method="get" novalidate>
+  <form id="contactForm" action="form-success.html" method="get">
     <div class="input">
       <label for="name">Full name</label>
       <input id="name" name="name" type="text" required minlength="2" autocomplete="name" />

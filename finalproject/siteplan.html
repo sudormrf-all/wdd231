@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trail Mix Lab — W05 Site Plan</title>
+    <link rel="stylesheet" href="css/siteplan.css">
+
+<body>
+    <header>
+        <div class="wrap">
+            <h1>Trail Mix Lab — W05 Site Plan</h1>
+            <p class="muted">Site plan outlining subject, purpose, audience scenarios, color schema, typography, and
+                wireframes for the Week 05 milestone.</p>
+        </div>
+    </header>
+
+    <main class="wrap" id="main">
+        <!-- 1. Site Name -->
+        <section aria-labelledby="site-name">
+            <h2 id="site-name">1) Site Name</h2>
+            <p><strong>Trail Mix Lab</strong> — a simple, memorable name that matches the core action: experimenting
+                with ingredients to build a custom trail mix.</p>
+        </section>
+
+        <!-- 2. Site Purpose -->
+        <section aria-labelledby="site-purpose">
+            <h2 id="site-purpose">2) Site Purpose</h2>
+            <ul>
+                <li>Let users browse a catalog of trail mix ingredients with price, nutrition, allergens, and origin.
+                </li>
+                <li>Provide filters and sorting to quickly find items that fit dietary needs and budgets.</li>
+                <li>Allow users to assemble and save a personal mix with live weight and cost totals, then send a
+                    message via a contact form.</li>
+            </ul>
+        </section>
+
+        <!-- 3. Scenarios -->
+        <section aria-labelledby="scenarios">
+            <h2 id="scenarios">3) Scenarios</h2>
+            <ul>
+                <li><strong>Allergy‑aware hiker:</strong> “I’m allergic to peanuts — can I filter the list to exclude
+                    peanut and tree‑nut items?”</li>
+                <li><strong>Budget planner:</strong> “I need about 500g of mix for a weekend trip and want to stay under
+                    $8 — which ingredients fit?”</li>
+                <li><strong>Nutrition seeker:</strong> “Which options are vegan and higher in protein with moderate
+                    sugar?”</li>
+            </ul>
+        </section>
+
+        <!-- 4. Color Schema -->
+        <section aria-labelledby="colors">
+            <h2 id="colors">4) Color Schema</h2>
+            <p>The palette balances warmth (trail foods) with clarity and accessible contrast. The same variables will
+                be used in the site.</p>
+            <div class="swatches" role="list">
+                <div class="swatch" role="listitem">
+                    <div class="chip brand" title="#6d4c41"></div>
+                    <div class="meta"><strong>Cocoa</strong> — <code>#6d4c41</code><br><em>Brand color:</em> headers,
+                        primary buttons, active states.</div>
+                </div>
+                <div class="swatch" role="listitem">
+                    <div class="chip accent" title="#ffca28"></div>
+                    <div class="meta"><strong>Honey</strong> — <code>#ffca28</code><br><em>Accent:</em> badges,
+                        highlights, figure captions.</div>
+                </div>
+                <div class="swatch" role="listitem">
+                    <div class="chip link" title="#0b57d0"></div>
+                    <div class="meta"><strong>Link Blue</strong> — <code>#0b57d0</code><br><em>Links:</em> inline links,
+                        interactive text elements.</div>
+                </div>
+                <div class="swatch" role="listitem">
+                    <div class="chip ink" title="#1b1b1f"></div>
+                    <div class="meta"><strong>Ink</strong> — <code>#1b1b1f</code><br><em>Text:</em> body copy and icons
+                        on light backgrounds.</div>
+                </div>
+            </div>
+            <p class="note" role="note">Contrast: body text uses Ink on white; accent backgrounds use dark text to meet
+                WCAG AA.</p>
+        </section>
+
+        <!-- 5. Color Schema Use in Document -->
+        <section aria-labelledby="doc-uses">
+            <h2 id="doc-uses">5) Color Schema Use in This Document</h2>
+            <p>Headings use <strong style="color:var(--brand)">Cocoa (brand)</strong>, links use <a href="#"
+                    onclick="return false;">Link Blue</a>, and figure captions use the <span
+                    style="background:var(--accent);padding:.1rem .35rem;border-radius:.25rem;border:1px solid #ffe082;color:#0a0a0a;">Honey
+                    accent</span>. The sections themselves show a <em>Cocoa</em> left border.</p>
+        </section>
+
+        <!-- 6. Typography Named and Used -->
+        <section aria-labelledby="type">
+            <h2 id="type">6) Typography: Named and Used</h2>
+            <p><strong>Primary font:</strong> <code>system-ui</code> stack (system-ui, -apple-system, Segoe UI, Roboto,
+                Ubuntu, Cantarell, Helvetica Neue, Arial, sans-serif).</p>
+            <ul>
+                <li><em>Body/UI:</em> system-ui, regular weight.</li>
+                <li><em>Headings:</em> system-ui, bold (600–700).</li>
+                <li><em>Code samples:</em> ui-monospace, SFMono-Regular, Consolas, monospace (as fallback where
+                    relevant).</li>
+            </ul>
+            <div class="type-sample">
+                <div class="label">Body sample (system-ui):</div>
+                <div>The quick brown fox jumps over the lazy dog — 1234567890 !?&amp;*</div>
+                <div class="label">Heading sample (bold):</div>
+                <h3 style="margin:0;color:var(--brand);">Trail Mix Lab — Build Your Perfect Hiking Snack</h3>
+            </div>
+        </section>
+
+        <!-- 7. Wireframes -->
+        <section aria-labelledby="wireframes">
+            <h2 id="wireframes">7) Wireframe: Home Page</h2>
+            <div class="grid">
+                <figure>
+                    <!-- Mobile wireframe -->
+                    <svg viewBox="0 0 360 640" width="100%" height="100%"
+                        aria-labelledby="wf-mobile-title wf-mobile-desc" role="img">
+                        <title id="wf-mobile-title">Mobile wireframe — Home</title>
+                        <desc id="wf-mobile-desc">Shows header, hamburger nav, hero area, featured cards, and a section
+                            image.</desc>
+                        <rect x="0" y="0" width="360" height="640" fill="#fff" />
+                        <!-- Header -->
+                        <rect x="0" y="0" width="360" height="56" fill="#eee" stroke="var(--brand)" stroke-width="2" />
+                        <rect x="12" y="14" width="120" height="28" fill="var(--brand)" />
+                        <rect x="316" y="14" width="32" height="28" fill="#ccc" />
+                        <!-- Hero -->
+                        <rect x="16" y="72" width="328" height="100" fill="#f0f0f0" stroke="#bbb" />
+                        <rect x="16" y="180" width="220" height="18" fill="#ddd" />
+                        <rect x="16" y="204" width="280" height="12" fill="#eee" />
+                        <rect x="16" y="224" width="120" height="28" fill="var(--accent)" />
+                        <!-- Featured cards -->
+                        <rect x="16" y="270" width="328" height="90" fill="#f9f9f9" stroke="#ddd" />
+                        <rect x="16" y="366" width="328" height="90" fill="#f9f9f9" stroke="#ddd" />
+                        <rect x="16" y="462" width="328" height="90" fill="#f9f9f9" stroke="#ddd" />
+                        <!-- Illustration -->
+                        <rect x="16" y="562" width="328" height="60" fill="#f0f0f0" stroke="#bbb" />
+                    </svg>
+                    <figcaption>Mobile (≤ 600px): stacked layout; hamburger nav; hero, CTA, featured items.</figcaption>
+                </figure>
+
+                <figure>
+                    <!-- Desktop/wide wireframe -->
+                    <svg viewBox="0 0 960 600" width="100%" height="100%" aria-labelledby="wf-wide-title wf-wide-desc"
+                        role="img">
+                        <title id="wf-wide-title">Wide wireframe — Home</title>
+                        <desc id="wf-wide-desc">Two-column hero with text and illustration, followed by a 3-column
+                            featured grid.</desc>
+                        <rect x="0" y="0" width="960" height="600" fill="#fff" />
+                        <!-- Header -->
+                        <rect x="0" y="0" width="960" height="64" fill="#eee" stroke="var(--brand)" stroke-width="2" />
+                        <rect x="20" y="18" width="180" height="28" fill="var(--brand)" />
+                        <rect x="760" y="18" width="180" height="28" fill="#ccc" />
+                        <!-- Hero two-column -->
+                        <rect x="20" y="84" width="420" height="160" fill="#f0f0f0" stroke="#bbb" />
+                        <!-- hero text block -->
+                        <rect x="460" y="84" width="480" height="160" fill="#f0f0f0" stroke="#bbb" /><!-- hero art -->
+                        <rect x="36" y="100" width="320" height="20" fill="#ddd" />
+                        <rect x="36" y="126" width="360" height="12" fill="#eee" />
+                        <rect x="36" y="146" width="300" height="12" fill="#eee" />
+                        <rect x="36" y="170" width="140" height="28" fill="var(--accent)" />
+                        <!-- Featured grid -->
+                        <rect x="20" y="268" width="920" height="300" fill="#fff" stroke="#ddd" />
+                        <!-- cards -->
+                        <rect x="40" y="288" width="280" height="120" fill="#f9f9f9" stroke="#ddd" />
+                        <rect x="340" y="288" width="280" height="120" fill="#f9f9f9" stroke="#ddd" />
+                        <rect x="640" y="288" width="280" height="120" fill="#f9f9f9" stroke="#ddd" />
+                        <rect x="40" y="420" width="280" height="120" fill="#f9f9f9" stroke="#ddd" />
+                        <rect x="340" y="420" width="280" height="120" fill="#f9f9f9" stroke="#ddd" />
+                        <rect x="640" y="420" width="280" height="120" fill="#f9f9f9" stroke="#ddd" />
+                    </svg>
+                    <figcaption>Wide (≥ 960px): two‑column hero, 3‑column featured grid, horizontal nav.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 8. Valid HTML/CSS -->
+        <section aria-labelledby="validity">
+            <h2 id="validity">8) Valid HTML and CSS</h2>
+            <p>This site plan is authored with semantic HTML5 and a small, valid CSS block. The document includes a
+                clear, descriptive title.</p>
+            <p class="muted">Last updated: 2025-10-01</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <small>&copy; 2025 Trail Mix Lab — Site Plan for W05</small>
+        </div>
+    </footer>
+</body>
+
+</html>

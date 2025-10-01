@@ -1,4 +1,3 @@
-// explore.js
 import { $, $$, formatCurrency, clamp } from './utils.js';
 import { storage } from './storage.js';
 import { fetchIngredients } from './data.js';
@@ -19,24 +18,20 @@ const clearMixBtn = $('#clearMix');
 const detailDialog = $('#detailDialog');
 const detailBody = $('#detailBody');
 const detailTitle = $('#detailTitle');
-
 setupDialog(detailDialog);
-
 priceOut.textContent = `$${Number(price.value).toFixed(2)}`;
 price.addEventListener('input', () => { priceOut.textContent = `$${Number(price.value).toFixed(2)}`; apply(); });
 
 let DATA = [];
-let MIX = storage.get('mix', []); // [{ id, grams }]
+let MIX = storage.get('mix', []);
 
-function saveMix() { storage.set('mix', MIX); renderMix(); }
-
-function renderMix() {
-  if (!MIX.length) {
+function saveMix(){ storage.set('mix', MIX); renderMix(); }
+function renderMix(){
+  if (!MIX.length){
     mixList.innerHTML = '<li><em>No ingredients yet.</em></li>';
-    mixTotal.textContent = '0 g • $0.00';
-    return;
+    mixTotal.textContent = '0 g • $0.00'; return;
   }
-  const rows = MIX.map(row => {
+  const rows = MIX.map(row=>{
     const item = DATA.find(i => i.id === row.id);
     const cost = (row.grams/100) * item.pricePer100g;
     return `<li>
@@ -48,40 +43,26 @@ function renderMix() {
     </li>`;
   }).join('');
   mixList.innerHTML = rows;
-
-  const totals = MIX.reduce((acc, row) => {
+  const totals = MIX.reduce((acc,row)=>{
     const item = DATA.find(i => i.id === row.id);
     acc.grams += row.grams;
     acc.cost += (row.grams/100) * item.pricePer100g;
     return acc;
-  }, { grams:0, cost:0 });
+  },{grams:0,cost:0});
   mixTotal.textContent = `${totals.grams} g • ${formatCurrency(totals.cost)}`;
 }
-
-mixList.addEventListener('click', (e) => {
+mixList.addEventListener('click', (e)=>{
   const idDec = e.target.getAttribute('data-dec');
   const idInc = e.target.getAttribute('data-inc');
   const idRem = e.target.getAttribute('data-remove');
-  if (idDec) {
-    MIX = MIX.map(m => m.id===idDec ? { ...m, grams: clamp(m.grams-50, 50, 10000) } : m);
-    saveMix();
-  } else if (idInc) {
-    MIX = MIX.map(m => m.id===idInc ? { ...m, grams: m.grams+50 } : m);
-    saveMix();
-  } else if (idRem) {
-    MIX = MIX.filter(m => m.id !== idRem);
-    saveMix();
-  }
+  if (idDec){ MIX = MIX.map(m => m.id===idDec ? { ...m, grams: clamp(m.grams-50, 50, 10000) } : m); saveMix(); }
+  else if (idInc){ MIX = MIX.map(m => m.id===idInc ? { ...m, grams: m.grams+50 } : m); saveMix(); }
+  else if (idRem){ MIX = MIX.filter(m => m.id!==idRem); saveMix(); }
 });
-
 clearMixBtn.addEventListener('click', () => { MIX = []; saveMix(); });
 
-function allergenBadges(list) {
-  if (!list || !list.length) return '<span class="badge">Allergen friendly</span>';
-  return list.map(a => `<span class="badge">${a}</span>`).join('');
-}
-
-function cardTemplate(item) {
+function allergenBadges(list){ if(!list?.length) return '<span class="badge">Allergen friendly</span>'; return list.map(a=>`<span class="badge">${a}</span>`).join(''); }
+function cardTemplate(item){
   return `<article class="card" id="${item.id}">
     <h3>${item.name}</h3>
     <div class="meta">
@@ -104,8 +85,7 @@ function cardTemplate(item) {
     </div>
   </article>`;
 }
-
-function openDetail(item) {
+function openDetail(item){
   detailTitle.textContent = item.name;
   detailBody.innerHTML = `
     <p><strong>Origin:</strong> ${item.origin}</p>
@@ -117,85 +97,57 @@ function openDetail(item) {
       <li>Carbs: ${item.carbs} g (sugars ${item.sugar} g, fiber ${item.fiber} g)</li>
       <li>Sodium: ${item.sodium} mg</li>
     </ul>
-    <p>${item.notes}</p>
-  `;
-  if (typeof detailDialog.showModal === 'function') detailDialog.showModal();
-  else detailDialog.setAttribute('open','');
+    <p>${item.notes}</p>`;
+  if (typeof detailDialog.showModal === 'function') detailDialog.showModal(); else detailDialog.setAttribute('open','');
   detailDialog.querySelector('[data-close-dialog]').focus();
 }
-
-function normalize(s) { return String(s).toLowerCase().normalize('NFKD'); }
-
-function apply() {
+function normalize(s){ return String(s).toLowerCase().normalize('NFKD'); }
+function apply(){
   const maxPrice = Number(price.value);
   const cat = category.value;
   const q = normalize(search.value || '');
-  const exclude = allergens.filter(a => a.checked).map(a => a.value);
-
+  const exclude = allergens.filter(a=>a.checked).map(a=>a.value);
   let list = DATA.filter(i =>
     i.pricePer100g <= maxPrice &&
     (cat==='all' || i.category===cat) &&
-    (q==='' || normalize(i.name + ' ' + i.notes + ' ' + i.origin).includes(q)) &&
+    (q==='' || normalize(i.name+' '+i.notes+' '+i.origin).includes(q)) &&
     (exclude.every(a => !i.allergens.includes(a))) &&
     (!veganOnly.checked || i.vegan)
   );
-
-  // sort
   const s = sort.value;
-  list.sort((a,b) => {
-    if (s==='name') return a.name.localeCompare(b.name);
-    if (s==='price') return a.pricePer100g - b.pricePer100g;
-    if (s==='calories') return a.caloriesPer100g - b.caloriesPer100g;
-    if (s==='rating') return b.rating - a.rating;
-    return 0;
-  });
-
-  // stats
-  const avgPrice = list.length ? (list.reduce((acc, i) => acc + i.pricePer100g, 0) / list.length) : 0;
+  list.sort((a,b)=> s==='name' ? a.name.localeCompare(b.name) :
+                    s==='price' ? a.pricePer100g - b.pricePer100g :
+                    s==='calories' ? a.caloriesPer100g - b.caloriesPer100g :
+                    s==='rating' ? b.rating - a.rating : 0);
+  const avgPrice = list.length ? (list.reduce((acc,i)=>acc+i.pricePer100g,0)/list.length) : 0;
   stats.innerHTML = `<span><strong>${list.length}</strong> items</span> <span>avg price <strong>${formatCurrency(avgPrice)}</strong> / 100g</span>`;
-
-  // render
   results.innerHTML = list.map(cardTemplate).join('');
 }
-
-results.addEventListener('click', (e) => {
+results.addEventListener('click', (e)=>{
   const addId = e.target.getAttribute('data-add');
   const detailId = e.target.getAttribute('data-detail');
-  if (addId) {
-    const gramsInput = document.getElementById(`g-${addId}`);
-    const grams = clamp(Number(gramsInput.value || 100), 50, 10000);
-    const existing = MIX.find(m => m.id===addId);
+  if (addId){
+    const grams = clamp(Number(document.getElementById(`g-${addId}`).value || 100), 50, 10000);
+    const existing = MIX.find(m=>m.id===addId);
     if (existing) existing.grams = clamp(existing.grams + grams, 50, 10000);
     else MIX.push({ id: addId, grams });
     saveMix();
-  } else if (detailId) {
-    const item = DATA.find(i => i.id===detailId);
-    openDetail(item);
+  } else if (detailId){
+    openDetail(DATA.find(i=>i.id===detailId));
   }
 });
-
-async function init() {
-  try {
+async function init(){
+  try{
     DATA = await fetchIngredients();
-    renderMix();
-    apply();
-
-    // filter listeners
-    [category, price, search, veganOnly, sort, ...allergens].forEach(el => {
-      el.addEventListener('input', apply);
-      el.addEventListener('change', apply);
+    renderMix(); apply();
+    [category, price, search, veganOnly, sort, ...allergens].forEach(el=>{
+      el.addEventListener('input', apply); el.addEventListener('change', apply);
     });
-
-    // if hash anchor points to an item id, scroll into view
-    if (location.hash) {
-      const id = location.hash.replace('#','');
-      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+    if (location.hash){
+      const id = location.hash.replace('#',''); setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'}),300);
     }
-
-  } catch (err) {
-    results.innerHTML = '<p role="alert">Could not load data. Try reloading the page.</p>';
-    stats.textContent = '';
+  }catch(err){
+    results.innerHTML = '<p role="alert">Could not load data. Try reloading the page.</p>'; stats.textContent = '';
   }
 }
-
 init();

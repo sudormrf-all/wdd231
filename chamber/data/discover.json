@@ -1,0 +1,66 @@
+[
+  {
+    "id": "domluis",
+    "name": "Dom Luís I Bridge",
+    "address": "Av. de Gustavo Eiffel, Porto",
+    "description": "An iconic double-deck iron bridge spanning the Douro River with sweeping views.",
+    "image": { "src": "./images/domluis.webp", "width": 300, "height": 200, "alt": "Dom Luís I Bridge over the Douro River" },
+    "url": "#"
+  },
+  {
+    "id": "lello",
+    "name": "Livraria Lello",
+    "address": "R. das Carmelitas 144, Porto",
+    "description": "Legendary neo‑gothic bookstore famed for its woodwork, stained glass, and grand staircase.",
+    "image": { "src": "./images/lello.webp", "width": 300, "height": 200, "alt": "Interior staircase at Livraria Lello" },
+    "url": "#"
+  },
+  {
+    "id": "ribeira",
+    "name": "Ribeira District",
+    "address": "Cais da Ribeira, Porto",
+    "description": "Historic riverfront quarter with colorful facades, cafes, and boat tours.",
+    "image": { "src": "./images/ribeira.jpg", "width": 300, "height": 200, "alt": "Colorful buildings in Porto's Ribeira" },
+    "url": "#"
+  },
+  {
+    "id": "clerigos",
+    "name": "Clérigos Tower",
+    "address": "R. de São Filipe de Nery, Porto",
+    "description": "Baroque bell tower offering panoramic city views after a scenic climb.",
+    "image": { "src": "./images/clerigos.webp", "width": 300, "height": 200, "alt": "Clérigos Tower against a blue sky" },
+    "url": "#"
+  },
+  {
+    "id": "saobento",
+    "name": "São Bento Station",
+    "address": "Praça de Almeida Garrett, Porto",
+    "description": "Railway station known for its vast azulejo tile panels depicting Portuguese history.",
+    "image": { "src": "./images/saobento.webp", "width": 300, "height": 200, "alt": "Azulejo tiles in São Bento Station" },
+    "url": "#"
+  },
+  {
+    "id": "serralves",
+    "name": "Serralves Museum & Park",
+    "address": "R. de Serralves 877, Porto",
+    "description": "Contemporary art museum set within lush gardens and art deco architecture.",
+    "image": { "src": "./images/serralves.webp", "width": 300, "height": 200, "alt": "Serralves Museum with gardens" },
+    "url": "#"
+  },
+  {
+    "id": "casamusica",
+    "name": "Casa da Música",
+    "address": "Av. da Boavista 604-610, Porto",
+    "description": "Striking concert hall with world-class acoustics and diverse performances.",
+    "image": { "src": "./images/casamusica.webp", "width": 300, "height": 200, "alt": "Casa da Música modern facade" },
+    "url": "#"
+  },
+  {
+    "id": "bolhao",
+    "name": "Bolhão Market",
+    "address": "R. Formosa 214, Porto",
+    "description": "Historic market filled with fresh produce, local delicacies, and lively vendors.",
+    "image": { "src": "./images/bolhao.webp", "width": 300, "height": 200, "alt": "Stalls at Mercado do Bolhão" },
+    "url": "#"
+  }
+]
